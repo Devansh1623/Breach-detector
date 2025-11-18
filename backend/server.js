@@ -21,9 +21,12 @@ const BREACH_DIRECTORY_API_KEY = process.env.BREACH_DIRECTORY_API_KEY || "free";
 const PORT = process.env.PORT || 3000;
 
 // -------------------------------
-//  ROOT ROUTE
+//  SERVE STATIC FILES
 // -------------------------------
-app.get("/", (req, res) => {
+app.use(express.static('public'));
+
+// API status route
+app.get("/api", (req, res) => {
     res.json({ message: "Breach Checker API is running" });
 });
 
