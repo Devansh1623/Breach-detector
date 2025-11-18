@@ -14,7 +14,8 @@ app.use(express.json());
 //  CONFIG (EDIT THIS)
 // -------------------------------
 const HIBP_API_KEY = "YOUR_HIBP_API_KEY"; 
-const BREACH_DIRECTORY_API_KEY = "free"; // free tier key
+const BREACH_DIRECTORY_API_KEY = process.env.BREACH_DIRECTORY_API_KEY;
+// free tier key
 
 // -------------------------------
 //  CHECK EMAIL USING HIBP (PAID)
@@ -25,6 +26,7 @@ app.post("/check-email-hibp", async (req, res) => {
     if (!email) return res.json({ error: "Email is required" });
 
     try {
+        const resp = await axios.get( https://breachdirectory.com/api?email=${email}&apiKey=${BREACH_DIRECTORY_API_KEY} );
         const resp = await axios.get(
             `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`,
             {
@@ -107,3 +109,4 @@ app.post("/check-password", async (req, res) => {
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
 });
+
