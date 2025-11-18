@@ -1,0 +1,23 @@
+body { 
+    font-family: Arial; 
+    padding: 20px; 
+    max-width: 500px; 
+    margin: auto; 
+}
+input, button { 
+    width: 100%; 
+    padding: 10px; 
+    margin: 10px 0; 
+}
+button { 
+    background: black; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+#output { 
+    padding: 10px; 
+    background: #eee; 
+    margin-top: 15px; 
+    white-space: pre-wrap;
+}
