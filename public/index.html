@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>🔍 Email & Password Breach Checker</h2>
+
+<!-- Email Input -->
+<input id="email" type="email" placeholder="Enter email to check..." />
+
+<button onclick="checkHIBPEmail()">Check Email (HIBP)</button>
+<button onclick="checkBDEmail()">Check Email (BreachDirectory)</button>
+
+<hr>
+
+<!-- Password Input -->
+<input id="password" type="password" placeholder="Enter password to check..." />
+<button onclick="checkPassword()">Check Password (HIBP Free)</button>
+
+<div id="output"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
