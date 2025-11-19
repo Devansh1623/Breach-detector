@@ -1,4 +1,59 @@
 /* Theme Variables */
+.generator-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+.generated-pass {
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 13px;
+    flex: 1;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.btn-copy {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-copy:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+html[data-theme="dark"] {
+  --bg: linear-gradient(120deg,#0f1724,#1f2340);
+  --card-bg: #0b1020;
+  --text: #e6eef8;
+  --muted: #a3b1c6;
+  --accent: linear-gradient(90deg,#3b82f6,#8b5cf6);
+  --btn-text: #fff;
+  --shadow: 0 10px 30px rgba(2,6,23,0.7);
+}
+
 :root{
   --bg: linear-gradient(120deg,#647bff,#8e58ff);
   --card-bg: #ffffff;

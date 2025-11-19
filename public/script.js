@@ -47,6 +47,34 @@ function renderHistory(){
 }
 
 /* --------------------------
+    Random Password Generator
+---------------------------*/
+
+function generatePassword() {
+    const length = 14;
+    const chars = {
+        upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        lower: "abcdefghijklmnopqrstuvwxyz",
+        numbers: "0123456789",
+        symbols: "!@#$%^&*()-_=+[]{};:,.<>/?"
+    };
+
+    let password = "";
+    password += chars.upper[Math.floor(Math.random() * chars.upper.length)];
+    password += chars.lower[Math.floor(Math.random() * chars.lower.length)];
+    password += chars.numbers[Math.floor(Math.random() * chars.numbers.length)];
+    password += chars.symbols[Math.floor(Math.random() * chars.symbols.length)];
+
+    const all = chars.upper + chars.lower + chars.numbers + chars.symbols;
+
+    while (password.length < length) {
+        password += all[Math.floor(Math.random() * all.length)];
+    }
+
+    return password.split("").sort(() => Math.random() - 0.5).join("");
+}
+
+/* --------------------------
     Email Checker (BD)
 ---------------------------*/
 async function checkBDEmail(){
@@ -61,6 +89,28 @@ async function checkBDEmail(){
     if(!emailRegex.test(email)){
         showOutput(`<div class="result-title">⚠️ Invalid Email</div><div>Please enter a valid email address.</div>`, "result-info");
         return;
+    }
+
+    /* --------------------------
+       DEMO BREACHED EMAIL
+    ---------------------------*/
+    if(email.toLowerCase() === "demo-breach@example.com"){
+        showOutput(`
+            <div class="result-title">⚠️ Demo Email Breached</div>
+            <ul style="padding-left:18px;">
+                <li>LinkedIn Data Leak</li>
+                <li>Dropbox Breach</li>
+                <li>MyFitnessPal Breach</li>
+            </ul>
+            <br>
+            <strong>This is a demonstration breach result.</strong>
+            <br><br>
+            <button onclick="window.location.href='https://accounts.google.com/signin/v2/recoveryidentifier'" 
+                class="btn-primary fadeIn">
+                🔐 Reset Password on Google
+            </button>
+        `, "result-breach");
+        return; 
     }
 
     showOutput(`<div class="loading">🔍 Checking email for breaches...</div>`, "result-info");
@@ -86,7 +136,6 @@ async function checkBDEmail(){
             return;
         }
 
-        // EMAIL FOUND IN BREACH
         if(data.breached && data.data.length > 0){
             const breaches = data.data.map(b => `<li>${b}</li>`).join("");
 
@@ -158,7 +207,6 @@ async function checkPassword(){
             return;
         }
 
-        // PASSWORD COMPROMISED — show generator button only here
         if(data.breached && data.count > 0){
             showOutput(`
                 <div class="result-title">🚨 Password Compromised!</div>
@@ -195,7 +243,6 @@ function setTheme(mode){
 
     localStorage.setItem(THEME_KEY, mode);
 
-    // update icon
     const btn = document.getElementById("themeToggle");
     if(btn){
         btn.textContent = mode === "dark" ? "☀️" : "🌙";
@@ -208,6 +255,29 @@ function setTheme(mode){
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("checkEmailBtn").onclick = checkBDEmail;
     document.getElementById("checkPasswordBtn").onclick = checkPassword;
+
+    /* Random Password Generator Buttons */
+    const genBtn = document.getElementById("generatePasswordBtn");
+    const genOut = document.getElementById("generatedPassword");
+    const copyBtn = document.getElementById("copyPasswordBtn");
+
+    if(genBtn){
+        genBtn.onclick = () => {
+            const pwd = generatePassword();
+            genOut.textContent = pwd;
+            document.getElementById("password").value = pwd;
+        };
+    }
+
+    if(copyBtn){
+        copyBtn.onclick = () => {
+            const pwd = genOut.textContent;
+            if(pwd.length > 0){
+                navigator.clipboard.writeText(pwd);
+                alert("Password copied!");
+            }
+        };
+    }
 
     // History modal
     document.getElementById("historyBtn").onclick = () => {
@@ -222,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderHistory();
     };
 
-    // Theme Button — THE FIX
+    // Theme Button
     const saved = localStorage.getItem(THEME_KEY) || "light";
     setTheme(saved);
 
