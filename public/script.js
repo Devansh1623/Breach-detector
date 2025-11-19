@@ -51,67 +51,151 @@ function renderHistory(){
 ---------------------------*/
 async function checkBDEmail(){
     const email = document.getElementById("email").value.trim();
-    if(!email) return showOutput("<div class='result-title'>⚠️ Enter Email</div>", "result-info");
 
-    showOutput("<div class='loading'>🔍 Checking...</div>", "result-info");
+    if(!email){
+        showOutput(`<div class="result-title">⚠️ Input Required</div><div>Please enter an email address.</div>`, "result-info");
+        return;
+    }
 
-    const res = await fetch(API + "/check-email-bd", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({email})
-    });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email)){
+        showOutput(`<div class="result-title">⚠️ Invalid Email</div><div>Please enter a valid email address.</div>`, "result-info");
+        return;
+    }
 
-    const data = await res.json();
-    addToHistory({ type:"email", query:email, date:new Date().toISOString(), result:data });
+    showOutput(`<div class="loading">🔍 Checking email for breaches...</div>`, "result-info");
 
-    if(data.breached){
-        showOutput(`
-            <div class='result-title'>⚠️ Breaches Found!</div>
-            <div>${data.data.length} breaches detected.</div>
-        `, "result-breach");
-    } else {
-        showOutput(`
-            <div class='result-title'>✅ Safe</div>
-            <div>No breaches found.</div>
-        `, "result-safe");
+    try{
+        const res = await fetch(API + "/check-email-bd", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email})
+        });
+
+        const data = await res.json();
+
+        addToHistory({
+            type:"email",
+            query:email,
+            date:new Date().toISOString(),
+            result:data
+        });
+
+        if(data.error){
+            showOutput(`<div class="result-title">❌ Error</div><div>${data.error}</div>`, "result-info");
+            return;
+        }
+
+        // ---------------------------------
+        // EMAIL FOUND IN BREACH
+        // ---------------------------------
+        if(data.breached && data.data.length > 0){
+            const breaches = data.data.map(b => `<li>${b}</li>`).join("");
+
+            showOutput(`
+                <div class="result-title">⚠️ Email Found in ${data.data.length} Breach(es)</div>
+                <ul style="padding-left:18px;">${breaches}</ul>
+                <br>
+                <div><strong>Recommended Actions:</strong></div>
+                <ul style="padding-left:18px;">
+                    <li>Reset your account password immediately</li>
+                    <li>Enable 2-Factor Authentication</li>
+                    <li>Avoid reusing passwords across sites</li>
+                </ul>
+                <br>
+                <button onclick="window.location.href='https://accounts.google.com/signin/v2/recoveryidentifier'" 
+                    class="btn-primary fadeIn">
+                    🔐 Reset Password on Google
+                </button>
+            `, "result-breach");
+
+        } 
+        
+        // ---------------------------------
+        // EMAIL SAFE
+        // ---------------------------------
+        else {
+            showOutput(`
+                <div class="result-title">✅ Good News!</div>
+                <div>This email was not found in known breaches.</div>
+            `, "result-safe");
+        }
+
+    }catch(err){
+        showOutput(`<div class='result-title'>❌ Connection Error</div><div>${err.message}</div>`, "result-info");
     }
 }
+
 
 /* --------------------------
     Password Checker (HIBP)
 ---------------------------*/
 async function checkPassword(){
     const password = document.getElementById("password").value;
-    if(!password) return showOutput("⚠️ Enter a password", "result-info");
 
-    showOutput("<div class='loading'>🔍 Checking...</div>", "result-info");
+    if(!password){
+        showOutput(`<div class="result-title">⚠️ Input Required</div><div>Please enter a password.</div>`, "result-info");
+        return;
+    }
 
-    const res = await fetch(API + "/check-password", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({password})
-    });
+    if(password.length < 4){
+        showOutput(`<div class="result-title">⚠️ Too Short</div><div>Enter at least 4 characters.</div>`, "result-info");
+        return;
+    }
 
-    const data = await res.json();
-    addToHistory({
-        type:"password",
-        query: password.replace(/./g, "*"),
-        date:new Date().toISOString(),
-        result:data
-    });
+    showOutput(`<div class="loading">🔍 Checking password securely...</div>`, "result-info");
 
-    if(data.breached){
-        showOutput(`
-            <div class='result-title'>🚨 Password Compromised</div>
-            <div>Seen ${data.count.toLocaleString()} times.</div>
-        `, "result-breach");
-    } else {
-        showOutput(`
-            <div class='result-title'>✅ Password Safe</div>
-            <div>No breach found.</div>
-        `, "result-safe");
+    try {
+        const res = await fetch(API + "/check-password", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ password })
+        });
+
+        const data = await res.json();
+
+        addToHistory({
+            type: "password",
+            query: password.replace(/./g, "*"),
+            date: new Date().toISOString(),
+            result: data
+        });
+
+        if(data.error){
+            showOutput(`<div class="result-title">❌ Error</div><div>${data.error}</div>`, "result-info");
+            return;
+        }
+
+        // --------------------------
+        // PASSWORD COMPROMISED
+        // --------------------------
+        if(data.breached && data.count > 0){
+            showOutput(`
+                <div class="result-title">🚨 Password Compromised!</div>
+                <div>This password has appeared <strong>${data.count.toLocaleString()}</strong> times in data breaches.</div>
+                <br>
+                <button onclick="window.location.href='password-generator.html'" class="btn-primary fadeIn">
+                    🔐 Generate a Strong Password
+                </button>
+            `, "result-breach");
+
+        } 
+        
+        // --------------------------
+        // PASSWORD SAFE
+        // --------------------------
+        else {
+            showOutput(`
+                <div class="result-title">✅ Password Safe!</div>
+                <div>No breach found for this password.</div>
+            `, "result-safe");
+        }
+
+    } catch(err){
+        showOutput(`<div class="result-title">❌ Connection Error</div><div>${err.message}</div>`, "result-info");
     }
 }
+
 
 /* --------------------------
     Dark Mode
