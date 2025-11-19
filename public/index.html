@@ -8,20 +8,29 @@
 </head>
 <body>
 
-<h2>🔍 Email & Password Breach Checker</h2>
+<div class="container">
+    <h1>🔍 Email & Password Breach Checker</h1>
+    <p class="subtitle">Check if your credentials have been compromised in data breaches</p>
 
-<!-- Email Input -->
-<input id="email" type="email" placeholder="Enter email to check..." />
+    <!-- Email Section -->
+    <div class="section">
+        <h2>📧 Check Email</h2>
+        <input id="email" type="email" placeholder="Enter email address..." />
+        <button onclick="checkBDEmail()" class="btn-primary">Check Email for Breaches</button>
+    </div>
 
-<button onclick="checkBDEmail()">Check Email for Breaches</button>
+    <hr>
 
-<hr>
+    <!-- Password Section -->
+    <div class="section">
+        <h2>🔒 Check Password</h2>
+        <input id="password" type="password" placeholder="Enter password..." />
+        <button onclick="checkPassword()" class="btn-primary">Check Password (HIBP Free)</button>
+    </div>
 
-<!-- Password Input -->
-<input id="password" type="password" placeholder="Enter password to check..." />
-<button onclick="checkPassword()">Check Password (HIBP Free)</button>
-
-<div id="output"></div>
+    <!-- Output Section -->
+    <div id="output" style="display: none;"></div>
+</div>
 
 <script src="script.js"></script>
 
