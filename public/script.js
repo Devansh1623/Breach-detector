@@ -1,57 +1,152 @@
 const API = window.location.origin;
 
 // DOM helper
-function showOutput(html, className){
+function showOutput(html, className) {
     const out = document.getElementById("output");
     out.innerHTML = html;
     out.className = "result " + className + " fadeIn";
     out.style.display = "block";
-    out.scrollIntoView({ behavior:"smooth" });
+    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 /* --------------------------
-    History (Frontend only)
+    History (Encrypted Storage)
 ---------------------------*/
-const KEY = "breach_history_v1";
+const KEY = "breach_history_v2";
+const ENCRYPT_KEY = "breach_secure_key_2024"; // Simple obfuscation
 
-function loadHistory(){
-    return JSON.parse(localStorage.getItem(KEY) || "[]");
+// Simple XOR encryption for basic obfuscation
+function simpleEncrypt(text) {
+    return btoa(text.split('').map((char, i) => 
+        String.fromCharCode(char.charCodeAt(0) ^ ENCRYPT_KEY.charCodeAt(i % ENCRYPT_KEY.length))
+    ).join(''));
 }
-function saveHistory(arr){
-    localStorage.setItem(KEY, JSON.stringify(arr));
+
+function simpleDecrypt(encoded) {
+    try {
+        return atob(encoded).split('').map((char, i) => 
+            String.fromCharCode(char.charCodeAt(0) ^ ENCRYPT_KEY.charCodeAt(i % ENCRYPT_KEY.length))
+        ).join('');
+    } catch (e) {
+        return '[]';
+    }
 }
-function addToHistory(entry){
+
+function loadHistory() {
+    try {
+        const encrypted = localStorage.getItem(KEY);
+        if (!encrypted) return [];
+        const decrypted = simpleDecrypt(encrypted);
+        return JSON.parse(decrypted);
+    } catch (e) {
+        console.error("History load error:", e);
+        return [];
+    }
+}
+
+function saveHistory(arr) {
+    try {
+        const json = JSON.stringify(arr);
+        const encrypted = simpleEncrypt(json);
+        localStorage.setItem(KEY, encrypted);
+    } catch (e) {
+        console.error("History save error:", e);
+    }
+}
+
+function addToHistory(entry) {
     const h = loadHistory();
     h.unshift(entry);
-    if(h.length > 100) h.pop();
+    if (h.length > 100) h.pop();
     saveHistory(h);
-    renderHistory();
 }
 
-function renderHistory(){
+function renderHistory() {
     const list = document.getElementById("historyList");
     const arr = loadHistory();
-    if(arr.length === 0){
-        list.innerHTML = "<div class='empty'>No history yet.</div>";
+    if (arr.length === 0) {
+        list.innerHTML = "<div class='empty'>No history yet. Start checking emails and passwords!</div>";
         return;
     }
     list.innerHTML = arr.map(item => `
         <div class="hist-item fadeIn">
             <div>
-                <strong>${item.query}</strong>
+                <strong>${escapeHtml(item.query)}</strong>
                 <div class="hist-meta">${item.type} • ${new Date(item.date).toLocaleString()}</div>
             </div>
-            <div>${item.result.breached ? "⚠️" : "✅"}</div>
+            <div style="font-size: 20px;">${item.result.breached ? "⚠️" : "✅"}</div>
         </div>
     `).join("");
+}
+
+// Prevent XSS
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/* --------------------------
+    Export History (JSON/CSV)
+---------------------------*/
+function exportHistory() {
+    const history = loadHistory();
+    if (history.length === 0) {
+        alert("No history to export!");
+        return;
+    }
+
+    // Ask user for format
+    const format = prompt("Export format?\nType 'json' or 'csv'", "json");
+    
+    if (format === 'json') {
+        exportJSON(history);
+    } else if (format === 'csv') {
+        exportCSV(history);
+    } else {
+        alert("Invalid format. Please type 'json' or 'csv'");
+    }
+}
+
+function exportJSON(history) {
+    const dataStr = JSON.stringify(history, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    downloadFile(blob, 'breach-history.json');
+}
+
+function exportCSV(history) {
+    let csv = 'Type,Query,Date,Breached,Details\n';
+    history.forEach(item => {
+        const breached = item.result.breached ? 'Yes' : 'No';
+        const details = item.result.breached ? 
+            (item.result.count || item.result.data?.length || 'Unknown') : 'Clean';
+        csv += `${item.type},"${item.query}","${item.date}",${breached},"${details}"\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    downloadFile(blob, 'breach-history.csv');
+}
+
+function downloadFile(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
 
 /* --------------------------
     Random Password Generator
 ---------------------------*/
-
 function generatePassword() {
-    const length = 14;
+    const length = 16;
     const chars = {
         upper: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         lower: "abcdefghijklmnopqrstuvwxyz",
@@ -77,32 +172,29 @@ function generatePassword() {
 /* --------------------------
     Email Checker (BD)
 ---------------------------*/
-async function checkBDEmail(){
+async function checkBDEmail() {
     const email = document.getElementById("email").value.trim();
 
-    if(!email){
+    if (!email) {
         showOutput(`<div class="result-title">⚠️ Input Required</div><div>Please enter an email address.</div>`, "result-info");
         return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(email)){
+    if (!emailRegex.test(email)) {
         showOutput(`<div class="result-title">⚠️ Invalid Email</div><div>Please enter a valid email address.</div>`, "result-info");
         return;
     }
 
-    /* --------------------------
-       DEMO BREACHED EMAIL
-    ---------------------------*/
-    if(email.toLowerCase() === "demo-breach@example.com"){
+    // Demo breach email
+    if (email.toLowerCase() === "demo-breach@example.com") {
         showOutput(`
             <div class="result-title">⚠️ Demo Email Breached</div>
-            <ul style="padding-left:18px;">
+            <ul style="padding-left:18px; margin: 10px 0;">
                 <li>LinkedIn Data Leak</li>
                 <li>Dropbox Breach</li>
                 <li>MyFitnessPal Breach</li>
             </ul>
-            <br>
             <strong>This is a demonstration breach result.</strong>
             <br><br>
             <button onclick="window.location.href='https://accounts.google.com/signin/v2/recoveryidentifier'" 
@@ -110,48 +202,46 @@ async function checkBDEmail(){
                 🔐 Reset Password on Google
             </button>
         `, "result-breach");
-        return; 
+        return;
     }
 
     showOutput(`<div class="loading">🔍 Checking email for breaches...</div>`, "result-info");
 
-    try{
+    try {
         const res = await fetch(API + "/check-email-bd", {
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({email})
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
         });
 
         const data = await res.json();
 
         addToHistory({
-            type:"email",
-            query:email,
-            date:new Date().toISOString(),
-            result:data
+            type: "email",
+            query: email,
+            date: new Date().toISOString(),
+            result: data
         });
 
-        if(data.error){
-            showOutput(`<div class="result-title">❌ Error</div><div>${data.error}</div>`, "result-info");
+        if (data.error) {
+            showOutput(`<div class="result-title">❌ Error</div><div>${escapeHtml(data.error)}</div>`, "result-info");
             return;
         }
 
-        if(data.breached && data.data.length > 0){
-            const breaches = data.data.map(b => `<li>${b}</li>`).join("");
+        if (data.breached && data.data.length > 0) {
+            const breaches = data.data.map(b => `<li>${escapeHtml(b)}</li>`).join("");
 
             showOutput(`
                 <div class="result-title">⚠️ Email Found in ${data.data.length} Breach(es)</div>
-                <ul style="padding-left:18px;">${breaches}</ul>
-                <br>
+                <ul style="padding-left:18px; margin: 10px 0;">${breaches}</ul>
                 <div><strong>Recommended Actions:</strong></div>
-                <ul style="padding-left:18px;">
+                <ul style="padding-left:18px; margin: 10px 0;">
                     <li>Reset your account password immediately</li>
                     <li>Enable 2-Factor Authentication</li>
                     <li>Avoid reusing passwords across sites</li>
                 </ul>
-                <br>
                 <button onclick="window.location.href='https://accounts.google.com/signin/v2/recoveryidentifier'" 
-                    class="btn-primary fadeIn">
+                    class="btn-primary fadeIn" style="margin-top: 12px;">
                     🔐 Reset Password on Google
                 </button>
             `, "result-breach");
@@ -163,23 +253,23 @@ async function checkBDEmail(){
             `, "result-safe");
         }
 
-    }catch(err){
-        showOutput(`<div class='result-title'>❌ Connection Error</div><div>${err.message}</div>`, "result-info");
+    } catch (err) {
+        showOutput(`<div class='result-title'>❌ Connection Error</div><div>${escapeHtml(err.message)}</div>`, "result-info");
     }
 }
 
 /* --------------------------
     Password Checker (HIBP)
 ---------------------------*/
-async function checkPassword(){
+async function checkPassword() {
     const password = document.getElementById("password").value;
 
-    if(!password){
+    if (!password) {
         showOutput(`<div class="result-title">⚠️ Input Required</div><div>Please enter a password.</div>`, "result-info");
         return;
     }
 
-    if(password.length < 4){
+    if (password.length < 4) {
         showOutput(`<div class="result-title">⚠️ Too Short</div><div>Enter at least 4 characters.</div>`, "result-info");
         return;
     }
@@ -189,31 +279,32 @@ async function checkPassword(){
     try {
         const res = await fetch(API + "/check-password", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ password })
         });
 
         const data = await res.json();
 
+        // Store masked password in history
         addToHistory({
             type: "password",
-            query: password.replace(/./g, "*"),
+            query: "*".repeat(password.length) + ` (${password.length} chars)`,
             date: new Date().toISOString(),
             result: data
         });
 
-        if(data.error){
-            showOutput(`<div class="result-title">❌ Error</div><div>${data.error}</div>`, "result-info");
+        if (data.error) {
+            showOutput(`<div class="result-title">❌ Error</div><div>${escapeHtml(data.error)}</div>`, "result-info");
             return;
         }
 
-        if(data.breached && data.count > 0){
+        if (data.breached && data.count > 0) {
             showOutput(`
                 <div class="result-title">🚨 Password Compromised!</div>
                 <div>This password has appeared <strong>${data.count.toLocaleString()}</strong> times in data breaches.</div>
                 <br>
                 <button onclick="window.location.href='password-generator.html'" class="btn-primary fadeIn">
-                    🔐 Generate a Strong Password
+                    🔑 Create a Strong Password
                 </button>
             `, "result-breach");
 
@@ -224,8 +315,8 @@ async function checkPassword(){
             `, "result-safe");
         }
 
-    } catch(err){
-        showOutput(`<div class="result-title">❌ Connection Error</div><div>${err.message}</div>`, "result-info");
+    } catch (err) {
+        showOutput(`<div class="result-title">❌ Connection Error</div><div>${escapeHtml(err.message)}</div>`, "result-info");
     }
 }
 
@@ -234,9 +325,9 @@ async function checkPassword(){
 ---------------------------*/
 const THEME_KEY = "theme_mode";
 
-function setTheme(mode){
-    if(mode === "dark"){
-        document.documentElement.setAttribute("data-theme","dark");
+function setTheme(mode) {
+    if (mode === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
     } else {
         document.documentElement.removeAttribute("data-theme");
     }
@@ -244,8 +335,9 @@ function setTheme(mode){
     localStorage.setItem(THEME_KEY, mode);
 
     const btn = document.getElementById("themeToggle");
-    if(btn){
+    if (btn) {
         btn.textContent = mode === "dark" ? "☀️" : "🌙";
+        btn.title = mode === "dark" ? "Switch to light mode" : "Switch to dark mode";
     }
 }
 
@@ -253,15 +345,16 @@ function setTheme(mode){
     Event Listeners
 ---------------------------*/
 document.addEventListener("DOMContentLoaded", () => {
+    // Check buttons
     document.getElementById("checkEmailBtn").onclick = checkBDEmail;
     document.getElementById("checkPasswordBtn").onclick = checkPassword;
 
-    /* Random Password Generator Buttons */
+    // Password generator
     const genBtn = document.getElementById("generatePasswordBtn");
     const genOut = document.getElementById("generatedPassword");
     const copyBtn = document.getElementById("copyPasswordBtn");
 
-    if(genBtn){
+    if (genBtn) {
         genBtn.onclick = () => {
             const pwd = generatePassword();
             genOut.textContent = pwd;
@@ -269,12 +362,17 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    if(copyBtn){
+    if (copyBtn) {
         copyBtn.onclick = () => {
             const pwd = genOut.textContent;
-            if(pwd.length > 0){
-                navigator.clipboard.writeText(pwd);
-                alert("Password copied!");
+            if (pwd.length > 0) {
+                navigator.clipboard.writeText(pwd).then(() => {
+                    const original = copyBtn.textContent;
+                    copyBtn.textContent = "✓";
+                    setTimeout(() => {
+                        copyBtn.textContent = original;
+                    }, 2000);
+                });
             }
         };
     }
@@ -284,45 +382,37 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("historyModal").style.display = "flex";
         renderHistory();
     };
-    document.getElementById("closeHistory").onclick = () =>
-        document.getElementById("historyModal").style.display = "none";
 
-    document.getElementById("clearHistory").onclick = () => {
-        localStorage.removeItem(KEY);
-        renderHistory();
+    document.getElementById("closeHistory").onclick = () => {
+        document.getElementById("historyModal").style.display = "none";
     };
 
-    // Theme Button
-    const saved = localStorage.getItem(THEME_KEY) || "light";
-    setTheme(saved);
+    document.getElementById("clearHistory").onclick = () => {
+        if (confirm("Are you sure you want to clear all history?")) {
+            localStorage.removeItem(KEY);
+            renderHistory();
+        }
+    };
+
+    document.getElementById("exportHistory").onclick = exportHistory;
+
+    // Theme toggle
+    const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+    setTheme(savedTheme);
 
     const toggleBtn = document.getElementById("themeToggle");
-    if(toggleBtn){
+    if (toggleBtn) {
         toggleBtn.addEventListener("click", () => {
             const current = localStorage.getItem(THEME_KEY) || "light";
             const next = current === "dark" ? "light" : "dark";
             setTheme(next);
         });
     }
-});
-/* -----------------------------------------
-    PARALLAX EFFECT FOR SPLINE BACKGROUND
--------------------------------------------- */
 
-document.addEventListener("mousemove", (e) => {
-    const frame = document.getElementById("splineFrame");
-    if (!frame) return;
-
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-    const moveX = x * 15;  // tilt intensity
-    const moveY = y * 15;
-
-    frame.style.transform = `
-        translate(-5%, -5%)
-        scale(1.12)
-        rotateX(${moveY * -0.4}deg)
-        rotateY(${moveX * 0.4}deg)
-    `;
+    // Close modal on outside click
+    document.getElementById("historyModal").addEventListener("click", (e) => {
+        if (e.target.id === "historyModal") {
+            document.getElementById("historyModal").style.display = "none";
+        }
+    });
 });

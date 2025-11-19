@@ -7,23 +7,13 @@
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<!-- Spline Background with Parallax -->
-<div class="spline-bg" id="splineContainer">
-    <iframe 
-        id="splineFrame"
-        src="https://my.spline.design/forestlightscopy-paTF8ClWYRe32A4LFE9xA9dA/" 
-        frameborder="0">
-    </iframe>
-</div>
-
-
 
 <!-- Top bar -->
 <div class="topbar">
-  <div class="brand">🔎 Breach Detector</div>
+  <div class="brand">🔍 Breach Detector</div>
   <div class="controls">
-    <button id="historyBtn" title="Show history">📜 History</button>
-    <button id="themeToggle" title="Toggle dark mode">🌙</button>
+    <button id="historyBtn" class="topbar-btn" title="Show history">📜 History</button>
+    <button id="themeToggle" class="topbar-btn" title="Toggle dark mode">🌙</button>
   </div>
 </div>
 
@@ -47,11 +37,13 @@
             <input id="password" type="password" placeholder="Enter password..." />
             <button id="checkPasswordBtn" class="btn-primary">Check Password (HIBP Free)</button>
         </div>
-    <div class="generator-box">
-        <button id="generatePasswordBtn" class="btn-secondary">🔐 Generate Strong Password</button>
-        <span id="generatedPassword" class="generated-pass"></span>
-        <button id="copyPasswordBtn" class="btn-copy">📋</button>
-    </div>
+
+        <!-- Password Generator -->
+        <div class="generator-box">
+            <button id="generatePasswordBtn" class="btn-secondary">🔑 Generate Strong Password</button>
+            <span id="generatedPassword" class="generated-pass"></span>
+            <button id="copyPasswordBtn" class="btn-copy" title="Copy password">📋</button>
+        </div>
 
         <!-- Output Section -->
         <div id="output" class="result result-info"></div>
@@ -63,9 +55,10 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3>🔎 Check History</h3>
-      <div>
-        <button id="clearHistory" class="small">Clear</button>
-        <button id="closeHistory" class="small">Close</button>
+      <div class="modal-actions">
+        <button id="exportHistory" class="small-btn">📥 Export</button>
+        <button id="clearHistory" class="small-btn danger">🗑️ Clear</button>
+        <button id="closeHistory" class="small-btn">✖️ Close</button>
       </div>
     </div>
     <div id="historyList" class="history-list"></div>
