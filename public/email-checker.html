@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breach Detector — Email Checker</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <div id="bg-wrap" class="bg-wrap"></div>
+
+  <header class="site-header">
+    <div class="brand">🔎 Breach Detector</div>
+    <div class="controls">
+      <a href="/" class="btn-ghost">Home</a>
+      <button id="historyBtn" class="btn-ghost">📜 History</button>
+      <button id="themeToggle" class="btn-ghost">🌙</button>
+    </div>
+  </header>
+
+  <main class="checker">
+    <div class="card">
+      <h1>Email Breach Checker</h1>
+      <p class="subtitle">Check whether your email appears in public breaches</p>
+
+      <div class="section">
+        <input id="email" type="email" placeholder="Enter email address..." />
+        <div class="row">
+          <button id="checkEmailBtn" class="btn-primary">Check Email for Breaches</button>
+        </div>
+      </div>
+
+      <div id="output" class="result result-info" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <!-- History Modal -->
+  <div id="historyModal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🔎 Check History</h3>
+        <div>
+          <button id="clearHistory" class="small">Clear</button>
+          <button id="closeHistory" class="small">Close</button>
+        </div>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+  </div>
+
+<script src="/assets/script.js" defer></script>
+</body>
+</html>

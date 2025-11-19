@@ -40,25 +40,56 @@ app.get("/api", (req, res) => {
 // -------------------------------
 //  CHECK EMAIL USING BREACH DIRECTORY (FREE)
 // -------------------------------
+// -------------------------------
+//  CHECK EMAIL USING RAPIDAPI (or other provider)
+//  Includes demo-breach@example.com forced result
+// -------------------------------
 app.post("/check-email-bd", async (req, res) => {
     const { email } = req.body;
-
     if (!email) return res.json({ error: "Email is required" });
 
-    try {
-        const resp = await axios.get(
-            `https://breachdirectory.com/api?email=${email}&apiKey=${BREACH_DIRECTORY_API_KEY}`
-        );
-
+    // Demo/test email - always breached with fake data (for demos)
+    if (email.toLowerCase() === "demo-breach@example.com") {
         return res.json({
-            breached: resp.data.success && resp.data.found,
-            data: resp.data.result || []
+            breached: true,
+            data: [
+                "Demo Leak: ExampleCorp 2023",
+                "Demo Leak: SampleDB 2024",
+                "Demo Leak: TestLeak 2022"
+            ]
+        });
+    }
+
+    try {
+        // Example RapidAPI integration — replace with your actual request
+        // NOTE: set RAPIDAPI_KEY in your environment variables
+        const resp = await axios.get(`https://email-breach-search.p.rapidapi.com/rapidapi/search-email/${encodeURIComponent(email)}`, {
+            headers: {
+                "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+                "x-rapidapi-host": "email-breach-search.p.rapidapi.com",
+                "accept": "application/json"
+            },
+            timeout: 15000
+        });
+
+        // adapt this parsing to the provider's response structure
+        const body = resp.data;
+        // Example: if provider returns an array of breaches in body.breaches
+        const breaches = Array.isArray(body) ? body : (body.breaches || []);
+        return res.json({
+            breached: breaches.length > 0,
+            data: breaches.map(b => (typeof b === "string" ? b : (b.Name || b.name || b.title || JSON.stringify(b))))
         });
 
     } catch (err) {
-        return res.json({ error: "BreachDirectory Error", details: err.message });
+        // Treat 404 or empty as not found
+        if (err.response && err.response.status === 404) {
+            return res.json({ breached: false, data: [] });
+        }
+        return res.json({ error: "Breach API Error", details: err.message });
     }
 });
+
 
 // -------------------------------
 //  CHECK PASSWORD USING HIBP RANGE API (FREE)
