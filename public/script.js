@@ -305,3 +305,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+/* -----------------------------------------
+    PARALLAX EFFECT FOR SPLINE BACKGROUND
+-------------------------------------------- */
+
+document.addEventListener("mousemove", (e) => {
+    const frame = document.getElementById("splineFrame");
+    if (!frame) return;
+
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+    const moveX = x * 15;  // tilt intensity
+    const moveY = y * 15;
+
+    frame.style.transform = `
+        translate(-5%, -5%)
+        scale(1.12)
+        rotateX(${moveY * -0.4}deg)
+        rotateY(${moveX * 0.4}deg)
+    `;
+});
