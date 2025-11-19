@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breach Checker</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
 
-<div class="container">
-    <h1>🔍 Email & Password Breach Checker</h1>
-    <p class="subtitle">Check if your credentials have been compromised in data breaches</p>
-
-    <!-- Email Section -->
-    <div class="section">
-        <h2>📧 Check Email</h2>
-        <input id="email" type="email" placeholder="Enter email address..." />
-        <button onclick="checkBDEmail()" class="btn-primary">Check Email for Breaches</button>
-    </div>
-
-    <hr>
-
-    <!-- Password Section -->
-    <div class="section">
-        <h2>🔒 Check Password</h2>
-        <input id="password" type="password" placeholder="Enter password..." />
-        <button onclick="checkPassword()" class="btn-primary">Check Password (HIBP Free)</button>
-    </div>
-
-    <!-- Output Section -->
-    <div id="output"></div>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="brand">🔎 Breach Detector</div>
+  <div class="controls">
+    <button id="historyBtn" title="Show history">📜 History</button>
+    <button id="themeToggle" title="Toggle dark mode">🌙</button>
+  </div>
 </div>
 
-<script src="script.js"></script>
+<div class="container">
+    <div class="card">
+        <h1>Email & Password Breach Checker</h1>
+        <p class="subtitle">Check if your credentials have been compromised in data breaches</p>
 
+        <!-- Email Section -->
+        <div class="section">
+            <h2>📧 Check Email</h2>
+            <input id="email" type="email" placeholder="Enter email address..." />
+            <button id="checkEmailBtn" class="btn-primary">Check Email for Breaches</button>
+        </div>
+
+        <hr />
+
+        <!-- Password Section -->
+        <div class="section">
+            <h2>🔒 Check Password</h2>
+            <input id="password" type="password" placeholder="Enter password..." />
+            <button id="checkPasswordBtn" class="btn-primary">Check Password (HIBP Free)</button>
+        </div>
+
+        <!-- Output Section -->
+        <div id="output" class="result result-info"></div>
+    </div>
+</div>
+
+<!-- History Modal -->
+<div id="historyModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>🔎 Check History</h3>
+      <div>
+        <button id="clearHistory" class="small">Clear</button>
+        <button id="closeHistory" class="small">Close</button>
+      </div>
+    </div>
+    <div id="historyList" class="history-list"></div>
+  </div>
+</div>
+
+<script src="/script.js" defer></script>
 </body>
 </html>

@@ -1,198 +1,123 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Theme Variables */
+:root{
+  --bg: linear-gradient(120deg,#647bff,#8e58ff);
+  --card-bg: #ffffff;
+  --text: #222;
+  --muted: #666;
+  --accent: linear-gradient(90deg,#5366ff,#9b51e0);
+  --btn-text: #fff;
+  --shadow: 0 10px 30px rgba(16,24,40,0.12);
 }
 
-body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+[data-theme="dark"]{
+  --bg: linear-gradient(120deg,#0f1724,#1f2340);
+  --card-bg: #0b1020;
+  --text: #e6eef8;
+  --muted: #a3b1c6;
+  --accent: linear-gradient(90deg,#3b82f6,#8b5cf6);
+  --btn-text: #fff;
+  --shadow: 0 10px 30px rgba(2,6,23,0.7);
 }
 
-.container {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+/* Base Layout */
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:var(--text);
+  transition:background .35s ease;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 28px;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 24px;
+  position:fixed;
+  width:100%;
+  top:0;
+  backdrop-filter: blur(8px);
+}
+.brand{font-weight:700}
+.controls button{margin-left:8px; background:transparent; border:0; cursor:pointer; color:var(--text)}
+
+.container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding-top:80px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 30px;
-    font-size: 14px;
+.card{
+  width:520px;
+  background:var(--card-bg);
+  border-radius:14px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  animation:cardEnter .6s ease;
 }
 
-.section {
-    margin-bottom: 30px;
+/* Inputs + Buttons */
+input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  margin-bottom:10px;
+  background:transparent;
+  color:var(--text);
 }
 
-h2 {
-    color: #444;
-    font-size: 18px;
-    margin-bottom: 15px;
+.btn-primary{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  background:var(--accent);
+  border:0;
+  color:var(--btn-text);
+  font-weight:600;
+  cursor:pointer;
+}
+.btn-primary:hover{opacity:.95}
+
+/* Result box */
+.result{
+  display:none;
+  margin-top:18px;
+  padding:12px;
+  border-radius:8px;
+}
+.result-safe{
+  background:rgba(16,185,129,0.1);
+  border:1px solid rgba(16,185,129,0.2);
+}
+.result-breach{
+  background:rgba(245,158,11,0.1);
+  border:1px solid rgba(245,158,11,0.2);
+}
+.result-info{
+  background:rgba(99,102,241,0.1);
+  border:1px solid rgba(99,102,241,0.2);
 }
 
-input { 
-    width: 100%; 
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all 0.3s;
-}
+/* Animations */
+@keyframes fadeIn{from{opacity:0; transform:translateY(6px)} to{opacity:1}}
+.fadeIn{animation:fadeIn .35s ease}
 
-input:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+/* Modal */
+.modal{position:fixed; inset:0; display:none; background:rgba(0,0,0,0.45); justify-content:center; align-items:center;}
+.modal-content{
+  width:760px;
+  max-width:90%;
+  background:var(--card-bg);
+  padding:16px;
+  border-radius:10px;
 }
-
-button { 
-    width: 100%; 
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
+.history-list{max-height:60vh; overflow:auto; border:1px solid rgba(255,255,255,0.1); padding:10px}
+.hist-item{
+  padding:10px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  display:flex;
+  justify-content:space-between;
 }
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-.btn-create-password {
-    margin-top: 15px;
-    width: 100%;
-    padding: 15px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-create-password:hover {
-    background: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
-}
-
-hr {
-    margin: 30px 0;
-    border: none;
-    border-top: 2px solid #f0f0f0;
-}
-
-#output { 
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    min-height: 0;
-    display: none;
-}
-
-#output:empty {
-    display: none;
-}
-
-#output:not(:empty) {
-    display: block;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.result-safe {
-    background: #d4edda;
-    border: 2px solid #28a745;
-    color: #155724;
-}
-
-.result-breach {
-    background: #f8d7da;
-    border: 2px solid #dc3545;
-    color: #721c24;
-}
-
-.result-info {
-    background: #d1ecf1;
-    border: 2px solid #17a2b8;
-    color: #0c5460;
-}
-
-.result-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.result-message {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.breach-count {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.loading {
-    text-align: center;
-    color: #667eea;
-    font-size: 16px;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        padding: 25px;
-    }
-    
-    h1 {
-        font-size: 24px;
-    }
-}
+.hist-meta{font-size:12px; color:var(--muted)}
