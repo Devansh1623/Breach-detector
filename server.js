@@ -38,39 +38,6 @@ app.get("/api", (req, res) => {
 });
 
 // -------------------------------
-//  CHECK EMAIL USING HIBP (PAID)
-// -------------------------------
-app.post("/check-email-hibp", async (req, res) => {
-    const { email } = req.body;
-
-    if (!email) return res.json({ error: "Email is required" });
-
-    if (!HIBP_API_KEY) {
-        return res.json({ error: "HIBP API key not configured" });
-    }
-
-    try {
-        const resp = await axios.get(
-            `https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`,
-            {
-                headers: {
-                    "hibp-api-key": HIBP_API_KEY,
-                    "user-agent": "BreachChecker"
-                }
-            }
-        );
-
-        return res.json({ breached: true, data: resp.data });
-
-    } catch (err) {
-        if (err.response && err.response.status === 404)
-            return res.json({ breached: false, data: [] });
-
-        return res.json({ error: "HIBP Error", details: err.message });
-    }
-});
-
-// -------------------------------
 //  CHECK EMAIL USING BREACH DIRECTORY (FREE)
 // -------------------------------
 app.post("/check-email-bd", async (req, res) => {
