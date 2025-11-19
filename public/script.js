@@ -86,9 +86,7 @@ async function checkBDEmail(){
             return;
         }
 
-        // ---------------------------------
         // EMAIL FOUND IN BREACH
-        // ---------------------------------
         if(data.breached && data.data.length > 0){
             const breaches = data.data.map(b => `<li>${b}</li>`).join("");
 
@@ -109,12 +107,7 @@ async function checkBDEmail(){
                 </button>
             `, "result-breach");
 
-        } 
-        
-        // ---------------------------------
-        // EMAIL SAFE
-        // ---------------------------------
-        else {
+        } else {
             showOutput(`
                 <div class="result-title">✅ Good News!</div>
                 <div>This email was not found in known breaches.</div>
@@ -125,7 +118,6 @@ async function checkBDEmail(){
         showOutput(`<div class='result-title'>❌ Connection Error</div><div>${err.message}</div>`, "result-info");
     }
 }
-
 
 /* --------------------------
     Password Checker (HIBP)
@@ -166,9 +158,7 @@ async function checkPassword(){
             return;
         }
 
-        // --------------------------
-        // PASSWORD COMPROMISED
-        // --------------------------
+        // PASSWORD COMPROMISED — show generator button only here
         if(data.breached && data.count > 0){
             showOutput(`
                 <div class="result-title">🚨 Password Compromised!</div>
@@ -179,12 +169,7 @@ async function checkPassword(){
                 </button>
             `, "result-breach");
 
-        } 
-        
-        // --------------------------
-        // PASSWORD SAFE
-        // --------------------------
-        else {
+        } else {
             showOutput(`
                 <div class="result-title">✅ Password Safe!</div>
                 <div>No breach found for this password.</div>
@@ -196,15 +181,25 @@ async function checkPassword(){
     }
 }
 
-
 /* --------------------------
     Dark Mode
 ---------------------------*/
 const THEME_KEY = "theme_mode";
+
 function setTheme(mode){
-    document.documentElement.setAttribute("data-theme", mode);
+    if(mode === "dark"){
+        document.documentElement.setAttribute("data-theme","dark");
+    } else {
+        document.documentElement.removeAttribute("data-theme");
+    }
+
     localStorage.setItem(THEME_KEY, mode);
-    document.getElementById("themeToggle").textContent = mode === "dark" ? "☀️" : "🌙";
+
+    // update icon
+    const btn = document.getElementById("themeToggle");
+    if(btn){
+        btn.textContent = mode === "dark" ? "☀️" : "🌙";
+    }
 }
 
 /* --------------------------
@@ -227,7 +222,16 @@ document.addEventListener("DOMContentLoaded", () => {
         renderHistory();
     };
 
-    // Theme
+    // Theme Button — THE FIX
     const saved = localStorage.getItem(THEME_KEY) || "light";
     setTheme(saved);
+
+    const toggleBtn = document.getElementById("themeToggle");
+    if(toggleBtn){
+        toggleBtn.addEventListener("click", () => {
+            const current = localStorage.getItem(THEME_KEY) || "light";
+            const next = current === "dark" ? "light" : "dark";
+            setTheme(next);
+        });
+    }
 });
