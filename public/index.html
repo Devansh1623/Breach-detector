@@ -1,6 +1,7 @@
 // Use same origin since frontend and backend are on same server
 const API = window.location.origin;
 
+<<<<<<< HEAD
 // Show output with animation
 function showOutput(html, className) {
     const output = document.getElementById("output");
@@ -49,6 +50,31 @@ async function checkBDEmail() {
         });
 
         const data = await res.json();
+=======
+<div class="container">
+    <h1>🔍 Email & Password Breach Checker</h1>
+    <p class="subtitle">Check if your credentials have been compromised in data breaches</p>
+
+    <!-- Email Section -->
+    <div class="section">
+        <h2>📧 Check Email</h2>
+        <input id="email" type="email" placeholder="Enter email address..." />
+        <button onclick="checkBDEmail()" class="btn-primary">Check Email for Breaches</button>
+    </div>
+
+    <hr>
+
+    <!-- Password Section -->
+    <div class="section">
+        <h2>🔒 Check Password</h2>
+        <input id="password" type="password" placeholder="Enter password..." />
+        <button onclick="checkPassword()" class="btn-primary">Check Password (HIBP Free)</button>
+    </div>
+
+    <!-- Output Section -->
+    <div id="output"></div>
+</div>
+>>>>>>> 52a0ba1e88a1054f85a73436b1f5ed1c368fc0f6
 
         if (data.error) {
             showOutput(
