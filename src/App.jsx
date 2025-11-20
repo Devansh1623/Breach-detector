@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
+import "./styles/globals.css";
 import Landing from "./components/Landing";
 import EmailChecker from "./components/EmailChecker";
 import PasswordChecker from "./components/PasswordChecker";

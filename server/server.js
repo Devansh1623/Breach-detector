@@ -10,12 +10,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 
-// Load env variables FIRST
-dotenv.config();
-
 // Path helpers
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load env variables from src/components/.env
+dotenv.config({ path: path.resolve(__dirname, '../src/components/.env') });
 
 // Create Express App BEFORE using routes
 const app = express();
@@ -26,12 +26,12 @@ app.use(express.json());
 // MongoDB Connection
 // -------------------------------
 mongoose
-  .connect("mongodb://localhost:27017/breach_detector", {
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/breach_detector", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error(err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 // -------------------------------
 // AUTH ROUTES (Signup, OTP, Login)
@@ -123,4 +123,8 @@ app.post("/check-password", async (req, res) => {
 // Start Server
 // -------------------------------
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
+  console.log('Environment loaded from: src/components/.env');
+  console.log('Email configured:', !!process.env.EMAIL_HOST);
+});
