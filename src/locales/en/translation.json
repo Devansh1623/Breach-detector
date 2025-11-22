@@ -1,0 +1,187 @@
+{
+    "nav": {
+        "home": "Home",
+        "email": "Email",
+        "password": "Password",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "History"
+    },
+    "hero": {
+        "title": "Protect Your Digital Identity",
+        "subtitle": "Data breaches are on the rise. Check if your email, password, or URLs are compromised — instantly and securely."
+    },
+    "whySecurity": {
+        "title": "Why Security Matters Now More Than Ever",
+        "billions": {
+            "title": "Billions of Records Leaked",
+            "desc": "Cyberattacks are increasing exponentially. Billions of personal records are exposed every year on the dark web."
+        },
+        "financial": {
+            "title": "Financial Loss",
+            "desc": "Identity theft can lead to significant financial loss and ruin your credit score. Early detection is key."
+        },
+        "proactive": {
+            "title": "Proactive Protection",
+            "desc": "Don't wait for a breach to happen. Regularly checking your credentials helps you stay one step ahead of hackers."
+        }
+    },
+    "dataSecurity": {
+        "title": "Your Data Security Matters to Us",
+        "subtitle": "We believe security tools should be transparent and privacy-focused. Here's how we protect your data while keeping you safe.",
+        "useServices": "Use Our Services",
+        "zeroStorage": {
+            "title": "Zero Data Storage",
+            "desc": "We never store your passwords, emails, or sensitive data on our servers. All checks are performed in real-time and discarded immediately."
+        },
+        "privacyFirst": {
+            "title": "Privacy-First Design",
+            "desc": "Password checks use k-Anonymity hashing. Your actual password never leaves your browser in plain text—only a partial hash is sent."
+        },
+        "transparent": {
+            "title": "Transparent Operations",
+            "desc": "All breach checks use publicly available databases and APIs. No hidden tracking, no data mining, no third-party analytics."
+        },
+        "howProtects": "How Each Service Protects Your Privacy"
+    },
+    "services": {
+        "title": "Our Security Tools",
+        "email": {
+            "title": "Email Breach Checker",
+            "desc": "Find out if your email has been compromised in any known data breaches.",
+            "button": "Check Email"
+        },
+        "password": {
+            "title": "Password Strength Analyzer",
+            "desc": "Test your password strength and check if it's been leaked in breaches.",
+            "button": "Check Password"
+        },
+        "url": {
+            "title": "URL Safety Scanner",
+            "desc": "Verify if a website is safe to visit or if it's been flagged for phishing or malware.",
+            "button": "Scan URL"
+        },
+        "ip": {
+            "title": "IP Privacy Scanner",
+            "desc": "Check what your IP address reveals about your location, ISP, and connection privacy.",
+            "button": "Scan IP"
+        },
+        "owasp": {
+            "title": "OWASP Config Scanner",
+            "desc": "Scan your site for missing security headers, SSL issues, and OWASP misconfigurations.",
+            "button": "Scan Website"
+        }
+    },
+    "emailChecker": {
+        "title": "Email Breach Checker",
+        "placeholder": "you@example.com",
+        "button": "Check Email",
+        "checking": "Checking...",
+        "safe": "Good News!",
+        "safeDesc": "This email has not been found in any known data breaches.",
+        "safeAdvice": "Good news — no breaches found. Still consider a strong unique password plus 2FA.",
+        "breached": "Warning!",
+        "breachedDesc": "This email was found in {{count}} data breach(es).",
+        "breachedIn": "This email was found in the following breaches:",
+        "error": "Error",
+        "errorDesc": "Failed to check email. Please try again.",
+        "exportPDF": "Export PDF Report"
+    },
+    "passwordChecker": {
+        "title": "Password Breach & Generator",
+        "placeholder": "Enter password...",
+        "button": "Check Password",
+        "checking": "Checking...",
+        "generate": "Generate Strong Password",
+        "strength": {
+            "veryWeak": "Very Weak",
+            "weak": "Weak",
+            "medium": "Medium",
+            "strong": "Strong",
+            "veryStrong": "Very Strong"
+        },
+        "tips": {
+            "default": "Tip: Use at least 12 characters, mix cases, numbers and symbols.",
+            "weak": "Weak password: Consider increasing length and adding symbols and numbers.",
+            "strong": "Strong password—good job. Still use unique passwords per site."
+        },
+        "breached": "Warning: Compromised",
+        "breachedDesc": "This password has been seen {{count}} times in data breaches. Do NOT use it!",
+        "safe": "Not Found in Breaches",
+        "safeDesc": "This password hasn't been found in known breaches, but strength matters too."
+    },
+    "urlChecker": {
+        "title": "URL Safety Checker",
+        "placeholder": "https://example.com",
+        "button": "Check URL",
+        "checking": "Checking...",
+        "safe": "Safe",
+        "safeDesc": "This URL appears to be safe.",
+        "unsafe": "Unsafe",
+        "unsafeDesc": "This URL has been flagged as potentially dangerous.",
+        "unknown": "Unknown",
+        "unknownDesc": "Unable to determine safety. Proceed with caution."
+    },
+    "ipScanner": {
+        "title": "IP Address & Privacy Scanner",
+        "subtitle": "See what information your connection is revealing to the world.",
+        "yourIP": "Your Public IP Address",
+        "location": "Location",
+        "isp": "ISP",
+        "timezone": "Timezone",
+        "city": "City",
+        "region": "Region",
+        "country": "Country",
+        "postal": "Postal Code",
+        "org": "Organization",
+        "error": "Could not retrieve IP information. Please try again later.",
+        "loading": "Detecting your IP..."
+    },
+    "owaspScanner": {
+        "title": "OWASP Security Scanner",
+        "subtitle": "Scan websites for security misconfigurations and vulnerabilities.",
+        "placeholder": "Enter website URL (e.g., google.com)",
+        "button": "Scan Website",
+        "scanning": "Scanning...",
+        "score": "Security Score",
+        "grade": "Security Grade",
+        "findings": "Detailed Findings",
+        "noIssues": "No Issues Found",
+        "noIssuesDesc": "Great job! Your security headers and configuration look solid.",
+        "exportJSON": "Export JSON",
+        "printPDF": "Print / PDF",
+        "severity": "Severity"
+    },
+    "footer": {
+        "brand": "BreachDetector",
+        "tagline": "Protecting your digital identity with advanced breach detection and security tools. Stay safe in an interconnected world.",
+        "tools": "Tools",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contact": "Contact Us",
+        "rights": "All rights reserved."
+    },
+    "notFound": {
+        "title": "Page Not Found",
+        "desc": "Oops! The page you're looking for doesn't exist. It might have been moved or deleted.",
+        "home": "Home",
+        "backHome": "Back to Homepage"
+    },
+    "error": {
+        "title": "Something Went Wrong",
+        "desc": "We encountered an unexpected error. Don't worry, your data is safe.",
+        "reload": "Reload Page",
+        "home": "Go Home"
+    },
+    "common": {
+        "loading": "Loading...",
+        "copy": "Copy",
+        "copied": "Copied!",
+        "paste": "Paste",
+        "demo": "Demo",
+        "or": "or",
+        "and": "and"
+    }
+}

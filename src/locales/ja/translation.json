@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "ホーム",
+        "email": "メール",
+        "password": "パスワード",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "履歴"
+    },
+    "hero": {
+        "title": "デジタルアイデンティティを保護",
+        "subtitle": "データ侵害が増加しています。メール、パスワード、URLが侵害されているかを即座に安全に確認してください。"
+    },
+    "services": {
+        "title": "セキュリティツール",
+        "email": {
+            "title": "メール侵害チェッカー",
+            "button": "メールを確認"
+        },
+        "password": {
+            "title": "パスワード強度分析",
+            "button": "パスワードを確認"
+        },
+        "url": {
+            "title": "URL安全スキャナー",
+            "button": "URLをスキャン"
+        },
+        "ip": {
+            "title": "IPプライバシースキャナー",
+            "button": "IPをスキャン"
+        },
+        "owasp": {
+            "title": "OWASP設定スキャナー",
+            "button": "ウェブサイトをスキャン"
+        }
+    },
+    "common": {
+        "loading": "読み込み中...",
+        "copy": "コピー",
+        "copied": "コピーしました!",
+        "paste": "貼り付け"
+    }
+}

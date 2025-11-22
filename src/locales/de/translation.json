@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "Startseite",
+        "email": "E-Mail",
+        "password": "Passwort",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "Verlauf"
+    },
+    "hero": {
+        "title": "Schützen Sie Ihre Digitale Identität",
+        "subtitle": "Datenschutzverletzungen nehmen zu. Überprüfen Sie, ob Ihre E-Mail, Ihr Passwort oder URLs kompromittiert sind — sofort und sicher."
+    },
+    "services": {
+        "title": "Unsere Sicherheitstools",
+        "email": {
+            "title": "E-Mail-Verletzungsprüfer",
+            "button": "E-Mail Prüfen"
+        },
+        "password": {
+            "title": "Passwortstärke-Analysator",
+            "button": "Passwort Prüfen"
+        },
+        "url": {
+            "title": "URL-Sicherheitsscanner",
+            "button": "URL Scannen"
+        },
+        "ip": {
+            "title": "IP-Datenschutzscanner",
+            "button": "IP Scannen"
+        },
+        "owasp": {
+            "title": "OWASP-Konfigurationsscanner",
+            "button": "Website Scannen"
+        }
+    },
+    "common": {
+        "loading": "Laden...",
+        "copy": "Kopieren",
+        "copied": "Kopiert!",
+        "paste": "Einfügen"
+    }
+}

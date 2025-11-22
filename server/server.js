@@ -14,33 +14,50 @@ import mongoose from "mongoose";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load env variables from src/components/.env
-dotenv.config({ path: path.resolve(__dirname, '../src/components/.env') });
+// -------------------------------
+// FORCE dotenv to load ONLY backend .env
+// -------------------------------
+process.env.DOTENV_KEY = "disable_auto_inject";
 
-// Create Express App BEFORE using routes
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"), // backend env only
+  override: true,
+  debug: false
+});
+
+console.log("Loaded Backend ENV →", path.resolve(__dirname, "../.env"));
+
+// -------------------------------
+// Express App
+// -------------------------------
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:5174"], // Allow frontend
+  credentials: true
+}));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 // -------------------------------
 // MongoDB Connection
 // -------------------------------
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/breach_detector", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/breach_detector")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // -------------------------------
-// AUTH ROUTES (Signup, OTP, Login)
+// AUTH ROUTES (Signup, Login)
 // -------------------------------
 import authRoutes from "./routes/auth.js";
 app.use("/auth", authRoutes);
 
 // -------------------------------
-// EXISTING SECURITY ROUTES
+// SECURITY ROUTES (existing)
 // -------------------------------
 import securityRoutes from "./routes/securityChecks.js";
 app.use("/", securityRoutes);
@@ -63,7 +80,6 @@ app.post("/check-email-bd", async (req, res) => {
 
   try {
     const apiKey = process.env.BREACH_API_KEY;
-
     const url = `https://breachdirectory.com/api?email=${encodeURIComponent(
       email
     )}&apiKey=${apiKey}`;
@@ -76,10 +92,7 @@ app.post("/check-email-bd", async (req, res) => {
     }
 
     const breaches = body.sources || [];
-    return res.json({
-      breached: breaches.length > 0,
-      data: breaches,
-    });
+    return res.json({ breached: breaches.length > 0, data: breaches });
   } catch (err) {
     return res.json({
       error: "Breach Directory API Error",
@@ -125,6 +138,5 @@ app.post("/check-password", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
-  console.log('Environment loaded from: src/components/.env');
-  console.log('Email configured:', !!process.env.EMAIL_HOST);
+  console.log("Email configured:", !!process.env.EMAIL_HOST);
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import "./styles/globals.css";
 import Landing from "./components/Landing";
@@ -7,64 +7,52 @@ import EmailChecker from "./components/EmailChecker";
 import PasswordChecker from "./components/PasswordChecker";
 import NotFound from "./components/NotFound";
 import UrlChecker from "./components/UrlChecker";
+import IpScanner from "./components/IpScanner";
+import OwaspScanner from "./components/OwaspScanner";
 import Signup from "./components/SignUp.jsx";
 import Login from "./components/Login.jsx";
-import VerifyOtp from "./components/VerifyOtp.jsx";
-
-function LoginWrapper() {
-  const navigate = useNavigate();
-  return <Login onVerified={() => navigate("/landing")} />;
-}
-
-function AnimatedRoutes() {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-
-        {/* Default route -> go to login */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* Login */}
-        <Route path="/login" element={<PageWrapper><LoginWrapper /></PageWrapper>} />
-
-        {/* Main Landing Page */}
-        <Route path="/landing" element={<PageWrapper><Landing /></PageWrapper>} />
-
-        {/* Tools */}
-        <Route path="/email" element={<PageWrapper><EmailChecker /></PageWrapper>} />
-        <Route path="/password" element={<PageWrapper><PasswordChecker /></PageWrapper>} />
-        <Route path="/check-url" element={<PageWrapper><UrlChecker /></PageWrapper>} />
-
-        {/* 404 */}
-        <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/verify-otp" element={<VerifyOtp />} />
-
-
-      </Routes>
-    </AnimatePresence>
-  );
-}
+import Footer from "./components/Footer";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function PageWrapper({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.35 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col min-h-screen"
     >
-      {children}
+      <div className="flex-grow">
+        {children}
+      </div>
+      <Footer />
     </motion.div>
   );
 }
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AnimatedRoutes />
-    </BrowserRouter>
+    <ErrorBoundary>
+      <Router>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<PageWrapper><Landing /></PageWrapper>} />
+            <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+            <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
+            <Route path="/email-check" element={<PageWrapper><EmailChecker /></PageWrapper>} />
+            <Route path="/password-check" element={<PageWrapper><PasswordChecker /></PageWrapper>} />
+            <Route path="/url-check" element={<PageWrapper><UrlChecker /></PageWrapper>} />
+            <Route path="/ip-scan" element={<PageWrapper><IpScanner /></PageWrapper>} />
+            <Route path="/owasp-scan" element={<PageWrapper><OwaspScanner /></PageWrapper>} />
+            <Route path="/privacy" element={<PageWrapper><Privacy /></PageWrapper>} />
+            <Route path="/terms" element={<PageWrapper><Terms /></PageWrapper>} />
+            <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
+          </Routes>
+        </AnimatePresence>
+      </Router>
+    </ErrorBoundary>
   );
 }

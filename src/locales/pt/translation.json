@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "Início",
+        "email": "Email",
+        "password": "Senha",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "Histórico"
+    },
+    "hero": {
+        "title": "Proteja Sua Identidade Digital",
+        "subtitle": "Violações de dados estão aumentando. Verifique se seu email, senha ou URLs foram comprometidos — instantaneamente e com segurança."
+    },
+    "services": {
+        "title": "Nossas Ferramentas de Segurança",
+        "email": {
+            "title": "Verificador de Violação de Email",
+            "button": "Verificar Email"
+        },
+        "password": {
+            "title": "Analisador de Força de Senha",
+            "button": "Verificar Senha"
+        },
+        "url": {
+            "title": "Scanner de Segurança de URL",
+            "button": "Escanear URL"
+        },
+        "ip": {
+            "title": "Scanner de Privacidade IP",
+            "button": "Escanear IP"
+        },
+        "owasp": {
+            "title": "Scanner de Configuração OWASP",
+            "button": "Escanear Site"
+        }
+    },
+    "common": {
+        "loading": "Carregando...",
+        "copy": "Copiar",
+        "copied": "Copiado!",
+        "paste": "Colar"
+    }
+}

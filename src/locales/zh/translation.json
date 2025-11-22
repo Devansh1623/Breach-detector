@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "首页",
+        "email": "电子邮件",
+        "password": "密码",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "历史"
+    },
+    "hero": {
+        "title": "保护您的数字身份",
+        "subtitle": "数据泄露正在增加。检查您的电子邮件、密码或URL是否已被泄露 — 即时且安全。"
+    },
+    "services": {
+        "title": "我们的安全工具",
+        "email": {
+            "title": "电子邮件泄露检查器",
+            "button": "检查电子邮件"
+        },
+        "password": {
+            "title": "密码强度分析器",
+            "button": "检查密码"
+        },
+        "url": {
+            "title": "URL安全扫描器",
+            "button": "扫描URL"
+        },
+        "ip": {
+            "title": "IP隐私扫描器",
+            "button": "扫描IP"
+        },
+        "owasp": {
+            "title": "OWASP配置扫描器",
+            "button": "扫描网站"
+        }
+    },
+    "common": {
+        "loading": "加载中...",
+        "copy": "复制",
+        "copied": "已复制!",
+        "paste": "粘贴"
+    }
+}

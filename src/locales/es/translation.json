@@ -1,0 +1,187 @@
+{
+    "nav": {
+        "home": "Inicio",
+        "email": "Correo",
+        "password": "Contraseña",
+        "url": "URL",
+        "ip": "IP",
+        "owasp": "OWASP",
+        "history": "Historial"
+    },
+    "hero": {
+        "title": "Protege Tu Identidad Digital",
+        "subtitle": "Las violaciones de datos están en aumento. Verifica si tu correo electrónico, contraseña o URLs están comprometidos — instantáneamente y de forma segura."
+    },
+    "whySecurity": {
+        "title": "Por Qué la Seguridad Importa Más Que Nunca",
+        "billions": {
+            "title": "Miles de Millones de Registros Filtrados",
+            "desc": "Los ciberataques están aumentando exponencialmente. Miles de millones de registros personales se exponen cada año en la dark web."
+        },
+        "financial": {
+            "title": "Pérdida Financiera",
+            "desc": "El robo de identidad puede llevar a pérdidas financieras significativas y arruinar tu puntaje crediticio. La detección temprana es clave."
+        },
+        "proactive": {
+            "title": "Protección Proactiva",
+            "desc": "No esperes a que ocurra una violación. Verificar regularmente tus credenciales te ayuda a estar un paso adelante de los hackers."
+        }
+    },
+    "dataSecurity": {
+        "title": "Tu Seguridad de Datos Nos Importa",
+        "subtitle": "Creemos que las herramientas de seguridad deben ser transparentes y enfocadas en la privacidad. Así es como protegemos tus datos mientras te mantenemos seguro.",
+        "useServices": "Usar Nuestros Servicios",
+        "zeroStorage": {
+            "title": "Almacenamiento Cero de Datos",
+            "desc": "Nunca almacenamos tus contraseñas, correos electrónicos o datos sensibles en nuestros servidores. Todas las verificaciones se realizan en tiempo real y se descartan inmediatamente."
+        },
+        "privacyFirst": {
+            "title": "Diseño Centrado en la Privacidad",
+            "desc": "Las verificaciones de contraseñas utilizan hash k-Anonymity. Tu contraseña real nunca sale de tu navegador en texto plano, solo se envía un hash parcial."
+        },
+        "transparent": {
+            "title": "Operaciones Transparentes",
+            "desc": "Todas las verificaciones de violaciones utilizan bases de datos y APIs disponibles públicamente. Sin seguimiento oculto, sin minería de datos, sin análisis de terceros."
+        },
+        "howProtects": "Cómo Cada Servicio Protege Tu Privacidad"
+    },
+    "services": {
+        "title": "Nuestras Herramientas de Seguridad",
+        "email": {
+            "title": "Verificador de Violaciones de Correo",
+            "desc": "Descubre si tu correo electrónico ha sido comprometido en alguna violación de datos conocida.",
+            "button": "Verificar Correo"
+        },
+        "password": {
+            "title": "Analizador de Fortaleza de Contraseña",
+            "desc": "Prueba la fortaleza de tu contraseña y verifica si ha sido filtrada en violaciones.",
+            "button": "Verificar Contraseña"
+        },
+        "url": {
+            "title": "Escáner de Seguridad de URL",
+            "desc": "Verifica si un sitio web es seguro para visitar o si ha sido marcado por phishing o malware.",
+            "button": "Escanear URL"
+        },
+        "ip": {
+            "title": "Escáner de Privacidad IP",
+            "desc": "Verifica qué revela tu dirección IP sobre tu ubicación, ISP y privacidad de conexión.",
+            "button": "Escanear IP"
+        },
+        "owasp": {
+            "title": "Escáner de Configuración OWASP",
+            "desc": "Escanea tu sitio en busca de encabezados de seguridad faltantes, problemas SSL y configuraciones incorrectas de OWASP.",
+            "button": "Escanear Sitio Web"
+        }
+    },
+    "emailChecker": {
+        "title": "Verificador de Violaciones de Correo",
+        "placeholder": "tu@ejemplo.com",
+        "button": "Verificar Correo",
+        "checking": "Verificando...",
+        "safe": "¡Buenas Noticias!",
+        "safeDesc": "Este correo electrónico no se ha encontrado en ninguna violación de datos conocida.",
+        "safeAdvice": "Buenas noticias — no se encontraron violaciones. Aún así considera una contraseña única fuerte más 2FA.",
+        "breached": "¡Advertencia!",
+        "breachedDesc": "Este correo electrónico se encontró en {{count}} violación(es) de datos.",
+        "breachedIn": "Este correo electrónico se encontró en las siguientes violaciones:",
+        "error": "Error",
+        "errorDesc": "No se pudo verificar el correo electrónico. Por favor, inténtalo de nuevo.",
+        "exportPDF": "Exportar Informe PDF"
+    },
+    "passwordChecker": {
+        "title": "Verificador y Generador de Contraseñas",
+        "placeholder": "Ingresa contraseña...",
+        "button": "Verificar Contraseña",
+        "checking": "Verificando...",
+        "generate": "Generar Contraseña Fuerte",
+        "strength": {
+            "veryWeak": "Muy Débil",
+            "weak": "Débil",
+            "medium": "Media",
+            "strong": "Fuerte",
+            "veryStrong": "Muy Fuerte"
+        },
+        "tips": {
+            "default": "Consejo: Usa al menos 12 caracteres, mezcla mayúsculas, números y símbolos.",
+            "weak": "Contraseña débil: Considera aumentar la longitud y agregar símbolos y números.",
+            "strong": "Contraseña fuerte—buen trabajo. Aún así usa contraseñas únicas por sitio."
+        },
+        "breached": "Advertencia: Comprometida",
+        "breachedDesc": "Esta contraseña se ha visto {{count}} veces en violaciones de datos. ¡NO la uses!",
+        "safe": "No Encontrada en Violaciones",
+        "safeDesc": "Esta contraseña no se ha encontrado en violaciones conocidas, pero la fortaleza también importa."
+    },
+    "urlChecker": {
+        "title": "Verificador de Seguridad de URL",
+        "placeholder": "https://ejemplo.com",
+        "button": "Verificar URL",
+        "checking": "Verificando...",
+        "safe": "Seguro",
+        "safeDesc": "Esta URL parece ser segura.",
+        "unsafe": "Inseguro",
+        "unsafeDesc": "Esta URL ha sido marcada como potencialmente peligrosa.",
+        "unknown": "Desconocido",
+        "unknownDesc": "No se puede determinar la seguridad. Procede con precaución."
+    },
+    "ipScanner": {
+        "title": "Escáner de Dirección IP y Privacidad",
+        "subtitle": "Ve qué información está revelando tu conexión al mundo.",
+        "yourIP": "Tu Dirección IP Pública",
+        "location": "Ubicación",
+        "isp": "ISP",
+        "timezone": "Zona Horaria",
+        "city": "Ciudad",
+        "region": "Región",
+        "country": "País",
+        "postal": "Código Postal",
+        "org": "Organización",
+        "error": "No se pudo recuperar la información de IP. Por favor, inténtalo más tarde.",
+        "loading": "Detectando tu IP..."
+    },
+    "owaspScanner": {
+        "title": "Escáner de Seguridad OWASP",
+        "subtitle": "Escanea sitios web en busca de configuraciones incorrectas de seguridad y vulnerabilidades.",
+        "placeholder": "Ingresa URL del sitio web (ej., google.com)",
+        "button": "Escanear Sitio Web",
+        "scanning": "Escaneando...",
+        "score": "Puntuación de Seguridad",
+        "grade": "Calificación de Seguridad",
+        "findings": "Hallazgos Detallados",
+        "noIssues": "No Se Encontraron Problemas",
+        "noIssuesDesc": "¡Buen trabajo! Tus encabezados de seguridad y configuración se ven sólidos.",
+        "exportJSON": "Exportar JSON",
+        "printPDF": "Imprimir / PDF",
+        "severity": "Severidad"
+    },
+    "footer": {
+        "brand": "BreachDetector",
+        "tagline": "Protegiendo tu identidad digital con herramientas avanzadas de detección de violaciones. Mantente seguro en un mundo interconectado.",
+        "tools": "Herramientas",
+        "legal": "Legal",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio",
+        "contact": "Contáctanos",
+        "rights": "Todos los derechos reservados."
+    },
+    "notFound": {
+        "title": "Página No Encontrada",
+        "desc": "¡Ups! La página que buscas no existe. Puede que haya sido movida o eliminada.",
+        "home": "Inicio",
+        "backHome": "Volver a la Página Principal"
+    },
+    "error": {
+        "title": "Algo Salió Mal",
+        "desc": "Encontramos un error inesperado. No te preocupes, tus datos están seguros.",
+        "reload": "Recargar Página",
+        "home": "Ir a Inicio"
+    },
+    "common": {
+        "loading": "Cargando...",
+        "copy": "Copiar",
+        "copied": "¡Copiado!",
+        "paste": "Pegar",
+        "demo": "Demo",
+        "or": "o",
+        "and": "y"
+    }
+}

@@ -13,7 +13,7 @@ export default function PasswordStrengthBar({ score }) {
           style={{ width: `${score}%` }}
         ></div>
       </div>
-      <p className="text-sm text-gray-300 mt-2">{label}</p>
+      <p className="text-sm text-gray-100 mt-2">{label}</p>
     </div>
   );
 }

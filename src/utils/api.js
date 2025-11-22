@@ -1,6 +1,7 @@
-export const BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
+export const BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:3000";
 
 export async function post(path, body) {
+  console.log(`POST request to: ${BASE}${path}`);
   const res = await fetch(BASE + path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
