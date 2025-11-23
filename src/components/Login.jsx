@@ -22,7 +22,8 @@ export default function Login() {
 
     try {
       await post("/auth/login", { email, password });
-      navigate("/landing");
+      localStorage.setItem("isAuthenticated", "true");
+      navigate("/");
     } catch (error) {
       setErr(error.message || t('auth.error.loginFailed'));
     }

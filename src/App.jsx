@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import "./styles/globals.css";
 import Landing from "./components/Landing";
@@ -15,6 +15,14 @@ import Footer from "./components/Footer";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
 import ErrorBoundary from "./components/ErrorBoundary";
+
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 function PageWrapper({ children }) {
   return (
@@ -39,14 +47,17 @@ export default function App() {
       <Router>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<PageWrapper><Landing /></PageWrapper>} />
             <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
             <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
-            <Route path="/email-check" element={<PageWrapper><EmailChecker /></PageWrapper>} />
-            <Route path="/password-check" element={<PageWrapper><PasswordChecker /></PageWrapper>} />
-            <Route path="/url-check" element={<PageWrapper><UrlChecker /></PageWrapper>} />
-            <Route path="/ip-scan" element={<PageWrapper><IpScanner /></PageWrapper>} />
-            <Route path="/owasp-scan" element={<PageWrapper><OwaspScanner /></PageWrapper>} />
+
+            {/* Protected Routes */}
+            <Route path="/" element={<ProtectedRoute><PageWrapper><Landing /></PageWrapper></ProtectedRoute>} />
+            <Route path="/email-check" element={<ProtectedRoute><PageWrapper><EmailChecker /></PageWrapper></ProtectedRoute>} />
+            <Route path="/password-check" element={<ProtectedRoute><PageWrapper><PasswordChecker /></PageWrapper></ProtectedRoute>} />
+            <Route path="/url-check" element={<ProtectedRoute><PageWrapper><UrlChecker /></PageWrapper></ProtectedRoute>} />
+            <Route path="/ip-scan" element={<ProtectedRoute><PageWrapper><IpScanner /></PageWrapper></ProtectedRoute>} />
+            <Route path="/owasp-scan" element={<ProtectedRoute><PageWrapper><OwaspScanner /></PageWrapper></ProtectedRoute>} />
+
             <Route path="/privacy" element={<PageWrapper><Privacy /></PageWrapper>} />
             <Route path="/terms" element={<PageWrapper><Terms /></PageWrapper>} />
             <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />

@@ -8,6 +8,12 @@ export default function Navbar() {
   const [showHistory, setShowHistory] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
+  const navigate = React.useNavigate ? React.useNavigate() : null; // Safe check if used outside Router context, though Navbar is inside Router
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    window.location.href = "/login"; // Force reload/redirect
+  };
 
   const navLinks = [
     { to: "/", label: t('nav.home') },
@@ -44,6 +50,12 @@ export default function Navbar() {
               📜 History
             </button>
             <LanguageSelector />
+            <button
+              onClick={handleLogout}
+              className="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded transition-colors border border-red-500/30"
+            >
+              {t('nav.logout')}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -77,6 +89,12 @@ export default function Navbar() {
                 className="px-3 py-2 bg-white/10 hover:bg-white/20 text-white rounded transition-colors text-left"
               >
                 📜 History
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-200 rounded transition-colors text-left border border-red-500/30"
+              >
+                {t('nav.logout')}
               </button>
             </div>
           </div>
