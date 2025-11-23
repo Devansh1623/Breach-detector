@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { post } from "../utils/api";
 import Navbar from "./Navbar";
 import { addHistory } from "../utils/history";
 import { useTranslation } from "react-i18next";
@@ -13,13 +14,12 @@ export default function UrlChecker() {
   async function checkUrl() {
     setLoading(true);
     setResult(null);
+    import { post } from "../utils/api";
+
+    // ... (inside component)
+
     try {
-      const res = await fetch("http://localhost:3000/check-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url })
-      });
-      const data = await res.json();
+      const data = await post("/check-url", { url });
       setResult(data);
       addHistory({
         type: "url",
