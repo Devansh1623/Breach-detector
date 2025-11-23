@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound";
 import UrlChecker from "./components/UrlChecker";
 import IpScanner from "./components/IpScanner";
 import OwaspScanner from "./components/OwaspScanner";
-import Signup from "./components/SignUp.jsx";
+import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 import Footer from "./components/Footer";
 import Privacy from "./components/Privacy";
