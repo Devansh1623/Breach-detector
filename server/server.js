@@ -63,6 +63,24 @@ import securityRoutes from "./routes/securityChecks.js";
 app.use("/", securityRoutes);
 
 // -------------------------------
+// SERVE STATIC ASSETS (Production)
+// -------------------------------
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Handle React routing, return all requests to React app
+app.get("*", (req, res, next) => {
+  // If request is for API, skip to next middleware (which might be 404)
+  // But since we put this AFTER API routes, it should be fine.
+  // However, we need to be careful not to catch API 404s here if we want them to return JSON.
+  // A better approach is to check if it's an API request.
+  if (req.path.startsWith("/auth") || req.path.startsWith("/check-") || req.path.startsWith("/api")) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, "../dist", "index.html"));
+});
+
+// -------------------------------
 // Email Breach Checker (BreachDirectory)
 // -------------------------------
 app.post("/check-email-bd", async (req, res) => {
