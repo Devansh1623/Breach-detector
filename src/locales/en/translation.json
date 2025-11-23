@@ -259,5 +259,32 @@
         "demo": "Demo",
         "or": "or",
         "and": "and"
+    },
+    "auth": {
+        "subtitle": "Securely access your dashboard",
+        "emailLabel": "Email Address",
+        "passwordLabel": "Password",
+        "confirmPasswordLabel": "Confirm Password",
+        "rememberDevice": "Remember this device",
+        "forgotPassword": "Forgot Password?",
+        "loginButton": "LOG IN",
+        "signupButton": "SIGN UP",
+        "noAccount": "Don't have an account?",
+        "hasAccount": "Already have an account?",
+        "signupLink": "Sign up",
+        "loginLink": "Log in",
+        "signupTitle": "Create Account",
+        "error": {
+            "required": "All fields are required",
+            "loginFailed": "Login failed. Please check your credentials.",
+            "signupFailed": "Signup failed. Please try again.",
+            "passwordMismatch": "Passwords do not match",
+            "allRequired": "All fields are required",
+            "exists": "User already exists",
+            "created": "Account created successfully!"
+        },
+        "success": {
+            "created": "Account created successfully!"
+        }
     }
 }
