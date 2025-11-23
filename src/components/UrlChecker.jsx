@@ -14,9 +14,7 @@ export default function UrlChecker() {
   async function checkUrl() {
     setLoading(true);
     setResult(null);
-    import { post } from "../utils/api";
 
-    // ... (inside component)
 
     try {
       const data = await post("/check-url", { url });
