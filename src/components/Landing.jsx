@@ -289,7 +289,7 @@ export default function Landing() {
               </p>
             </div>
             <Link
-              to="/email"
+              to="/email-check"
               className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg text-white"
             >
               Check Email
@@ -312,7 +312,7 @@ export default function Landing() {
               </p>
             </div>
             <Link
-              to="/password"
+              to="/password-check"
               className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg text-white"
             >
               Check Password
@@ -335,7 +335,7 @@ export default function Landing() {
               </p>
             </div>
             <Link
-              to="/check-url"
+              to="/url-check"
               className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg text-white"
             >
               Scan URL
@@ -358,7 +358,7 @@ export default function Landing() {
               </p>
             </div>
             <Link
-              to="/ip-scanner"
+              to="/ip-scan"
               className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg text-white"
             >
               Scan IP
@@ -381,7 +381,7 @@ export default function Landing() {
               </p>
             </div>
             <Link
-              to="/owasp-scanner"
+              to="/owasp-scan"
               className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg font-semibold hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg text-white"
             >
               Scan Website

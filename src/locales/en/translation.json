@@ -213,11 +213,11 @@
         "sections": {
             "1": {
                 "title": "1. Acceptance of Terms",
-                "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+                "content": "By accessing and using Aegis, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
             },
             "2": {
                 "title": "2. Service Description",
-                "content": "BreachDetector provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
+                "content": "Aegis provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
             },
             "3": {
                 "title": "3. User Responsibilities",
@@ -225,11 +225,11 @@
             },
             "4": {
                 "title": "4. Limitations of Liability",
-                "content": "While we strive for accuracy, BreachDetector does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
+                "content": "While we strive for accuracy, Aegis does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
             },
             "5": {
                 "title": "5. Intellectual Property",
-                "content": "All content, features, and functionality of BreachDetector are owned by us and are protected by copyright, trademark, and other intellectual property laws."
+                "content": "All content, features, and functionality of Aegis are owned by us and are protected by copyright, trademark, and other intellectual property laws."
             },
             "6": {
                 "title": "6. Termination",
@@ -247,7 +247,7 @@
         "lastUpdated": "Last updated:"
     },
     "footer": {
-        "brand": "BreachDetector",
+        "brand": "Aegis",
         "tagline": "Protecting your digital identity with advanced breach detection and security tools. Stay safe in an interconnected world.",
         "tools": "Tools",
         "legal": "Legal",

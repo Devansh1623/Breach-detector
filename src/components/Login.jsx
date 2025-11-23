@@ -149,10 +149,10 @@ export default function Login() {
 
           {/* Header / Logo */}
           <div className="flex flex-col items-center mb-10 relative z-20">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 border logo-shield">
-              <i className="fas fa-shield-alt text-3xl text-blue-400"></i>
+            <div className="w-24 h-24 flex items-center justify-center mb-4">
+              <img src="/aegis_logo.png" alt="Aegis Logo" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(192,132,252,0.5)]" />
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-wide">Breach Detector</h1>
+            <h1 className="text-2xl font-bold text-white tracking-wide">Aegis</h1>
             <p className="text-indigo-200 text-sm mt-2">{t('auth.subtitle')}</p>
           </div>
 

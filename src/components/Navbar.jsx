@@ -29,7 +29,7 @@ export default function Navbar() {
       <nav className="w-full fixed top-0 left-0 z-50 glass-nav">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link to="/" className="text-xl font-bold text-white flex items-center gap-2">
-            <span className="text-purple-500">🛡️</span> Breach Detector
+            <img src="/aegis_logo.png" alt="Aegis Logo" className="w-8 h-8" /> Aegis
           </Link>
 
           {/* Desktop Menu */}
