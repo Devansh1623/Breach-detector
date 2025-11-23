@@ -210,9 +210,9 @@ function FindingItem({ item }) {
                         {t('owaspScanner.severityLabel', { level: item.severity })}
                     </span>
 
-                    {expanded && item.recommendation && (
+                    {expanded && item.remediation && (
                         <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/5">
-                            <p className="text-sm text-gray-300 leading-relaxed">{item.recommendation}</p>
+                            <p className="text-sm text-gray-300 leading-relaxed">{item.remediation}</p>
                         </div>
                     )}
                 </div>

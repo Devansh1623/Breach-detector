@@ -104,29 +104,35 @@ export default function PasswordChecker() {
             )}
           </div>
         </div>
-        <div className="mt-8">
-          {result && result.error && (
-            <div className="glass-panel p-6 border border-red-500/30 bg-red-500/10">
-              <div className="text-red-400 font-bold mb-1">{t('error.title')}</div>
-              <div className="text-gray-200">{result.message}</div>
-            </div>
-          )}
-          {result && !result.error && result.breached && (
-            <div className="glass-panel p-6 border border-red-500/30 bg-red-500/5 animate-slideUp">
-              <div className="font-bold text-2xl text-red-400 mb-2">{t('passwordChecker.breachedTitle')}</div>
-              <div className="text-gray-200 mb-4">{t('passwordChecker.breachedDesc', { count: result.count?.toLocaleString() })}</div>
-              {renderTips()}
-            </div>
-          )}
-          {result && !result.error && !result.breached && (
-            <div className="glass-panel p-6 border border-green-500/30 bg-green-500/5 animate-slideUp">
-              <div className="font-bold text-2xl text-green-400 mb-2">{t('passwordChecker.notFoundTitle')}</div>
-              <div className="text-gray-200 mb-4">{t('passwordChecker.notFoundDesc')}</div>
-              {renderTips()}
-            </div>
-          )}
+
+        <div className="mt-6 border-t border-white/10 pt-6">
+          <h3 className="text-lg font-semibold text-gray-300 mb-2">{t('passwordChecker.generate')}</h3>
+          <PasswordGenerator onGenerate={setPassword} />
         </div>
       </div>
+      <div className="mt-8">
+        {result && result.error && (
+          <div className="glass-panel p-6 border border-red-500/30 bg-red-500/10">
+            <div className="text-red-400 font-bold mb-1">{t('error.title')}</div>
+            <div className="text-gray-200">{result.message}</div>
+          </div>
+        )}
+        {result && !result.error && result.breached && (
+          <div className="glass-panel p-6 border border-red-500/30 bg-red-500/5 animate-slideUp">
+            <div className="font-bold text-2xl text-red-400 mb-2">{t('passwordChecker.breachedTitle')}</div>
+            <div className="text-gray-200 mb-4">{t('passwordChecker.breachedDesc', { count: result.count?.toLocaleString() })}</div>
+            {renderTips()}
+          </div>
+        )}
+        {result && !result.error && !result.breached && (
+          <div className="glass-panel p-6 border border-green-500/30 bg-green-500/5 animate-slideUp">
+            <div className="font-bold text-2xl text-green-400 mb-2">{t('passwordChecker.notFoundTitle')}</div>
+            <div className="text-gray-200 mb-4">{t('passwordChecker.notFoundDesc')}</div>
+            {renderTips()}
+          </div>
+        )}
+      </div>
     </div>
+    </div >
   );
 }
