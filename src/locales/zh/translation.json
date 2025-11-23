@@ -1,44 +1,299 @@
 {
     "nav": {
         "home": "首页",
-        "email": "电子邮件",
+        "email": "邮箱",
         "password": "密码",
         "url": "URL",
         "ip": "IP",
         "owasp": "OWASP",
-        "history": "历史"
+        "history": "历史",
+        "login": "登录",
+        "signup": "注册",
+        "logout": "退出"
     },
     "hero": {
         "title": "保护您的数字身份",
-        "subtitle": "数据泄露正在增加。检查您的电子邮件、密码或URL是否已被泄露 — 即时且安全。"
+        "subtitle": "数据泄露事件呈上升趋势。立即安全地检查您的邮箱、密码或URL是否已泄露。"
+    },
+    "whySecurity": {
+        "title": "为什么安全比以往任何时候都重要",
+        "billions": {
+            "title": "数十亿条记录泄露",
+            "desc": "网络攻击呈指数级增长。每年有数十亿条个人记录在暗网上曝光。"
+        },
+        "financial": {
+            "title": "经济损失",
+            "desc": "身份盗窃可能导致重大经济损失并破坏您的信用评分。早期发现是关键。"
+        },
+        "proactive": {
+            "title": "主动保护",
+            "desc": "不要等到违规发生。定期检查您的凭据有助于您领先黑客一步。"
+        }
+    },
+    "dataSecurity": {
+        "title": "您的数据安全对我们很重要",
+        "subtitle": "我们认为安全工具应该是透明且注重隐私的。",
+        "useServices": "使用我们的服务",
+        "zeroStorage": {
+            "title": "零数据存储",
+            "desc": "我们绝不会在我们的服务器上存储您的密码、电子邮件或敏感数据。"
+        },
+        "privacyFirst": {
+            "title": "隐私优先设计",
+            "desc": "密码检查使用k-Anonymity哈希。"
+        },
+        "transparent": {
+            "title": "透明操作",
+            "desc": "所有违规检查均使用公开可用的数据库。"
+        },
+        "howProtects": "每项服务如何保护您的隐私"
     },
     "services": {
         "title": "我们的安全工具",
         "email": {
-            "title": "电子邮件泄露检查器",
-            "button": "检查电子邮件"
+            "title": "邮箱泄露检查器",
+            "desc": "查看您的邮箱是否在任何已知的数据泄露中被泄露。",
+            "button": "检查邮箱"
         },
         "password": {
             "title": "密码强度分析器",
+            "desc": "测试您的密码强度。",
             "button": "检查密码"
         },
         "url": {
             "title": "URL安全扫描器",
+            "desc": "验证网站是否安全。",
             "button": "扫描URL"
         },
         "ip": {
             "title": "IP隐私扫描器",
+            "desc": "查看您的IP泄露了什么。",
             "button": "扫描IP"
         },
         "owasp": {
             "title": "OWASP配置扫描器",
+            "desc": "扫描您的网站是否存在安全问题。",
             "button": "扫描网站"
         }
+    },
+    "emailChecker": {
+        "title": "邮箱泄露检查器",
+        "placeholder": "you@example.com",
+        "button": "检查邮箱",
+        "checking": "检查中...",
+        "safe": "好消息！",
+        "safeDesc": "未在任何已知的数据泄露中找到此邮箱。",
+        "safeAdvice": "好消息 — 未发现泄露。仍建议使用强唯一密码加2FA。",
+        "breached": "警告！",
+        "breachedDesc": "此邮箱在 {{count}} 次数据泄露中被发现。",
+        "breachedIn": "此邮箱在以下泄露中被发现：",
+        "error": "错误",
+        "errorDesc": "检查邮箱失败。请重试。",
+        "exportPDF": "导出PDF报告",
+        "invalid": "请输入有效的电子邮件地址。",
+        "networkError": "网络错误。请重试。",
+        "tip": "提示：输入您的邮箱以检查已知的数据泄露。"
+    },
+    "passwordChecker": {
+        "title": "密码检查器和生成器",
+        "placeholder": "输入密码...",
+        "button": "检查密码",
+        "checking": "检查中...",
+        "generate": "生成强密码",
+        "strength": {
+            "veryWeak": "非常弱",
+            "weak": "弱",
+            "medium": "中等",
+            "strong": "强",
+            "veryStrong": "非常强"
+        },
+        "tips": {
+            "default": "提示：使用至少12个字符，混合大小写、数字和符号。",
+            "weak": "密码弱：考虑增加长度并添加符号。",
+            "strong": "密码强 — 干得好。"
+        },
+        "breachedTitle": "🚨 密码已泄露",
+        "breachedDesc": "此密码在泄露中被看到 {{count}} 次。",
+        "notFoundTitle": "✅ 密码未找到",
+        "notFoundDesc": "此密码未出现在公开泄露中。",
+        "exportPDF": "📄 导出PDF",
+        "networkError": "网络错误"
+    },
+    "urlChecker": {
+        "title": "URL安全检查器",
+        "placeholder": "https://example.com",
+        "button": "检查URL",
+        "checking": "检查中...",
+        "verdict": "结论",
+        "exportPDF": "📄 导出PDF"
+    },
+    "ipScanner": {
+        "title": "IP地址和隐私扫描器",
+        "subtitle": "查看您的连接向世界泄露了什么信息。",
+        "yourIP": "您的公共IP地址",
+        "location": "位置",
+        "isp": "ISP",
+        "timezone": "时区",
+        "city": "城市",
+        "region": "地区",
+        "country": "国家",
+        "postal": "邮政编码",
+        "org": "组织",
+        "error": "无法检索IP信息。",
+        "loading": "正在扫描您的连接...",
+        "coordinates": "坐标"
+    },
+    "owaspScanner": {
+        "title": "OWASP安全扫描器",
+        "subtitle": "扫描网站是否存在安全配置错误。",
+        "placeholder": "输入网站URL（例如 google.com）",
+        "button": "扫描网站",
+        "scanning": "扫描中...",
+        "score": "安全评分",
+        "grade": "安全等级",
+        "findings": "详细结果",
+        "noIssues": "未发现问题",
+        "noIssuesDesc": "干得好！您的安全标头看起来很稳固。",
+        "exportJSON": "📥 导出JSON",
+        "printPDF": "🖨️ 打印 / PDF",
+        "severity": "严重性",
+        "severityLabel": "{{level}} 严重性"
+    },
+    "auth": {
+        "loginTitle": "登录",
+        "signupTitle": "创建账户",
+        "emailLabel": "邮箱",
+        "passwordLabel": "密码",
+        "confirmPasswordLabel": "确认密码",
+        "loginButton": "登录",
+        "signupButton": "注册",
+        "noAccount": "没有账户？",
+        "hasAccount": "已有账户？",
+        "loginLink": "登录",
+        "signupLink": "注册",
+        "error": {
+            "required": "邮箱和密码为必填项",
+            "allRequired": "所有字段均为必填项",
+            "passwordMismatch": "密码不匹配",
+            "loginFailed": "登录失败",
+            "signupFailed": "注册失败",
+            "exists": "账户已存在。请登录。"
+        },
+        "success": {
+            "created": "账户创建成功！"
+        }
+    },
+    "history": {
+        "title": "📜 扫描历史",
+        "clear": "🗑️ 清除所有",
+        "empty": "暂无历史记录。",
+        "emptyDesc": "您最近的扫描将显示在这里。",
+        "checkSuffix": "检查",
+        "status": {
+            "breached": "⚠️ 已泄露",
+            "safe": "✅ 安全",
+            "error": "❌ 错误"
+        },
+        "sources": "来源",
+        "occurrences": "次出现"
+    },
+    "privacy": {
+        "title": "隐私政策",
+        "sections": {
+            "1": {
+                "title": "1. Information We Collect",
+                "content": "We collect information you provide directly to us, including email addresses for account creation and scan queries (emails, passwords, URLs) for security analysis. We do not store passwords in plain text."
+            },
+            "2": {
+                "title": "2. How We Use Your Information",
+                "content": "Your information is used to provide breach detection services, improve our security tools, and communicate important updates. We analyze your queries against known breach databases to provide security insights."
+            },
+            "3": {
+                "title": "3. Data Storage",
+                "content": "Scan history is stored locally in your browser using LocalStorage. User accounts are stored securely in our database with encrypted passwords. We do not share your data with third parties."
+            },
+            "4": {
+                "title": "4. Security",
+                "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We recommend using strong, unique passwords for your account."
+            },
+            "5": {
+                "title": "5. Your Rights",
+                "content": "You have the right to access, update, or delete your personal information at any time. Contact us at devanshgeria18@gmail.com for any privacy-related requests."
+            },
+            "6": {
+                "title": "6. Changes to This Policy",
+                "content": "We may update this privacy policy from time to time. We will notify users of any significant changes by posting the new policy on this page."
+            }
+        },
+        "lastUpdated": "最后更新："
+    },
+    "terms": {
+        "title": "服务条款",
+        "sections": {
+            "1": {
+                "title": "1. Acceptance of Terms",
+                "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+            },
+            "2": {
+                "title": "2. Service Description",
+                "content": "BreachDetector provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
+            },
+            "3": {
+                "title": "3. User Responsibilities",
+                "content": "You agree to use our services only for lawful purposes. You must not use our tools to scan or analyze data you do not have permission to access. You are responsible for maintaining the confidentiality of your account credentials."
+            },
+            "4": {
+                "title": "4. Limitations of Liability",
+                "content": "While we strive for accuracy, BreachDetector does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
+            },
+            "5": {
+                "title": "5. Intellectual Property",
+                "content": "All content, features, and functionality of BreachDetector are owned by us and are protected by copyright, trademark, and other intellectual property laws."
+            },
+            "6": {
+                "title": "6. Termination",
+                "content": "We reserve the right to terminate or suspend your account and access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service."
+            },
+            "7": {
+                "title": "7. Changes to Terms",
+                "content": "We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms."
+            },
+            "8": {
+                "title": "8. Contact",
+                "content": "For questions about these Terms of Service, please contact us at devanshgeria18@gmail.com."
+            }
+        },
+        "lastUpdated": "最后更新："
+    },
+    "footer": {
+        "brand": "BreachDetector",
+        "tagline": "使用先进的违规检测工具保护您的数字身份。",
+        "tools": "工具",
+        "legal": "法律",
+        "privacy": "隐私政策",
+        "terms": "条款",
+        "contact": "联系我们",
+        "rights": "版权所有。"
+    },
+    "notFound": {
+        "title": "页面未找到",
+        "desc": "哎呀！您正在寻找的页面不存在。",
+        "home": "首页",
+        "backHome": "返回首页"
+    },
+    "error": {
+        "title": "出错了",
+        "desc": "我们遇到了意外错误。",
+        "reload": "重新加载页面",
+        "home": "回首页"
     },
     "common": {
         "loading": "加载中...",
         "copy": "复制",
-        "copied": "已复制!",
-        "paste": "粘贴"
+        "copied": "已复制！",
+        "paste": "粘贴",
+        "demo": "演示",
+        "or": "或",
+        "and": "和"
     }
 }

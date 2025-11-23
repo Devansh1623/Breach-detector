@@ -6,39 +6,294 @@
         "url": "URL",
         "ip": "IP",
         "owasp": "OWASP",
-        "history": "Historique"
+        "history": "Historique",
+        "login": "Connexion",
+        "signup": "Inscription",
+        "logout": "Déconnexion"
     },
     "hero": {
-        "title": "Protégez Votre Identité Numérique",
-        "subtitle": "Les violations de données sont en hausse. Vérifiez si votre email, mot de passe ou URLs sont compromis — instantanément et en toute sécurité."
+        "title": "Protégez votre identité numérique",
+        "subtitle": "Les violations de données sont en hausse. Vérifiez si votre email, mot de passe ou URL sont compromis — instantanément et en toute sécurité."
+    },
+    "whySecurity": {
+        "title": "Pourquoi la sécurité est plus importante que jamais",
+        "billions": {
+            "title": "Des milliards d'enregistrements divulgués",
+            "desc": "Les cyberattaques augmentent de façon exponentielle. Des milliards de dossiers personnels sont exposés chaque année sur le dark web."
+        },
+        "financial": {
+            "title": "Perte financière",
+            "desc": "Le vol d'identité peut entraîner des pertes financières importantes. La détection précoce est la clé."
+        },
+        "proactive": {
+            "title": "Protection proactive",
+            "desc": "N'attendez pas qu'une violation se produise. Vérifier régulièrement vos identifiants vous aide à garder une longueur d'avance sur les pirates."
+        }
+    },
+    "dataSecurity": {
+        "title": "La sécurité de vos données nous tient à cœur",
+        "subtitle": "Nous pensons que les outils de sécurité doivent être transparents et axés sur la confidentialité.",
+        "useServices": "Utiliser nos services",
+        "zeroStorage": {
+            "title": "Zéro stockage de données",
+            "desc": "Nous ne stockons jamais vos mots de passe, emails ou données sensibles."
+        },
+        "privacyFirst": {
+            "title": "Conception axée sur la confidentialité",
+            "desc": "Les vérifications de mots de passe utilisent le hachage k-Anonymity."
+        },
+        "transparent": {
+            "title": "Opérations transparentes",
+            "desc": "Toutes les vérifications utilisent des bases de données publiques."
+        },
+        "howProtects": "Comment chaque service protège votre vie privée"
     },
     "services": {
-        "title": "Nos Outils de Sécurité",
+        "title": "Nos outils de sécurité",
         "email": {
-            "title": "Vérificateur de Violation d'Email",
-            "button": "Vérifier Email"
+            "title": "Vérificateur de violation d'email",
+            "desc": "Découvrez si votre email a été compromis.",
+            "button": "Vérifier l'email"
         },
         "password": {
-            "title": "Analyseur de Force de Mot de Passe",
-            "button": "Vérifier Mot de Passe"
+            "title": "Analyseur de force de mot de passe",
+            "desc": "Testez la force de votre mot de passe.",
+            "button": "Vérifier le mot de passe"
         },
         "url": {
-            "title": "Scanner de Sécurité URL",
-            "button": "Scanner URL"
+            "title": "Scanner de sécurité URL",
+            "desc": "Vérifiez si un site web est sûr.",
+            "button": "Scanner l'URL"
         },
         "ip": {
-            "title": "Scanner de Confidentialité IP",
-            "button": "Scanner IP"
+            "title": "Scanner de confidentialité IP",
+            "desc": "Vérifiez ce que votre IP révèle.",
+            "button": "Scanner l'IP"
         },
         "owasp": {
-            "title": "Scanner de Configuration OWASP",
-            "button": "Scanner Site Web"
+            "title": "Scanner de configuration OWASP",
+            "desc": "Scannez votre site pour les problèmes de sécurité.",
+            "button": "Scanner le site web"
         }
+    },
+    "emailChecker": {
+        "title": "Vérificateur de violation d'email",
+        "placeholder": "vous@exemple.com",
+        "button": "Vérifier l'email",
+        "checking": "Vérification...",
+        "safe": "Bonne nouvelle !",
+        "safeDesc": "Cet email n'a été trouvé dans aucune violation de données connue.",
+        "safeAdvice": "Bonne nouvelle — aucune violation trouvée. Envisagez tout de même un mot de passe unique et fort plus 2FA.",
+        "breached": "Attention !",
+        "breachedDesc": "Cet email a été trouvé dans {{count}} violation(s) de données.",
+        "breachedIn": "Cet email a été trouvé dans les violations suivantes :",
+        "error": "Erreur",
+        "errorDesc": "Échec de la vérification de l'email. Veuillez réessayer.",
+        "exportPDF": "Exporter le rapport PDF",
+        "invalid": "Veuillez entrer une adresse email valide.",
+        "networkError": "Erreur réseau. Veuillez réessayer.",
+        "tip": "Conseil : Entrez votre email pour vérifier les violations de données connues."
+    },
+    "passwordChecker": {
+        "title": "Vérificateur et générateur de mot de passe",
+        "placeholder": "Entrez le mot de passe...",
+        "button": "Vérifier le mot de passe",
+        "checking": "Vérification...",
+        "generate": "Générer un mot de passe fort",
+        "strength": {
+            "veryWeak": "Très faible",
+            "weak": "Faible",
+            "medium": "Moyen",
+            "strong": "Fort",
+            "veryStrong": "Très fort"
+        },
+        "tips": {
+            "default": "Conseil : Utilisez au moins 12 caractères, mélangez majuscules, chiffres et symboles.",
+            "weak": "Mot de passe faible : Envisagez d'augmenter la longueur et d'ajouter des symboles.",
+            "strong": "Mot de passe fort — bon travail."
+        },
+        "breachedTitle": "🚨 Mot de passe compromis",
+        "breachedDesc": "Ce mot de passe a été vu {{count}} fois dans des violations.",
+        "notFoundTitle": "✅ Mot de passe non trouvé",
+        "notFoundDesc": "Ce mot de passe n'apparaît pas dans les violations publiques.",
+        "exportPDF": "📄 Exporter PDF",
+        "networkError": "Erreur réseau"
+    },
+    "urlChecker": {
+        "title": "Vérificateur de sécurité URL",
+        "placeholder": "https://exemple.com",
+        "button": "Vérifier l'URL",
+        "checking": "Vérification...",
+        "verdict": "Verdict",
+        "exportPDF": "📄 Exporter PDF"
+    },
+    "ipScanner": {
+        "title": "Scanner d'adresse IP et confidentialité",
+        "subtitle": "Voyez quelles informations votre connexion révèle.",
+        "yourIP": "Votre adresse IP publique",
+        "location": "Emplacement",
+        "isp": "FAI",
+        "timezone": "Fuseau horaire",
+        "city": "Ville",
+        "region": "Région",
+        "country": "Pays",
+        "postal": "Code postal",
+        "org": "Organisation",
+        "error": "Impossible de récupérer les informations IP.",
+        "loading": "Scan de votre connexion...",
+        "coordinates": "Coordonnées"
+    },
+    "owaspScanner": {
+        "title": "Scanner de sécurité OWASP",
+        "subtitle": "Scannez les sites web pour les mauvaises configurations de sécurité.",
+        "placeholder": "Entrez l'URL du site web (ex: google.com)",
+        "button": "Scanner le site web",
+        "scanning": "Scan en cours...",
+        "score": "Score de sécurité",
+        "grade": "Note de sécurité",
+        "findings": "Résultats détaillés",
+        "noIssues": "Aucun problème trouvé",
+        "noIssuesDesc": "Bon travail ! Vos en-têtes de sécurité semblent solides.",
+        "exportJSON": "📥 Exporter JSON",
+        "printPDF": "🖨️ Imprimer / PDF",
+        "severity": "Sévérité",
+        "severityLabel": "Sévérité {{level}}"
+    },
+    "auth": {
+        "loginTitle": "Connexion",
+        "signupTitle": "Créer un compte",
+        "emailLabel": "Email",
+        "passwordLabel": "Mot de passe",
+        "confirmPasswordLabel": "Confirmer le mot de passe",
+        "loginButton": "Se connecter",
+        "signupButton": "S'inscrire",
+        "noAccount": "Pas de compte ?",
+        "hasAccount": "Déjà un compte ?",
+        "loginLink": "Connectez-vous",
+        "signupLink": "Inscrivez-vous",
+        "error": {
+            "required": "Email et mot de passe requis",
+            "allRequired": "Tous les champs sont requis",
+            "passwordMismatch": "Les mots de passe ne correspondent pas",
+            "loginFailed": "Échec de la connexion",
+            "signupFailed": "Échec de l'inscription",
+            "exists": "Le compte existe déjà. Veuillez vous connecter."
+        },
+        "success": {
+            "created": "Compte créé avec succès !"
+        }
+    },
+    "history": {
+        "title": "📜 Historique des scans",
+        "clear": "🗑️ Tout effacer",
+        "empty": "Aucun historique pour le moment.",
+        "emptyDesc": "Vos scans récents apparaîtront ici.",
+        "checkSuffix": "Vérification",
+        "status": {
+            "breached": "⚠️ Compromis",
+            "safe": "✅ Sûr",
+            "error": "❌ Erreur"
+        },
+        "sources": "sources",
+        "occurrences": "occurrences"
+    },
+    "privacy": {
+        "title": "Politique de confidentialité",
+        "sections": {
+            "1": {
+                "title": "1. Information We Collect",
+                "content": "We collect information you provide directly to us, including email addresses for account creation and scan queries (emails, passwords, URLs) for security analysis. We do not store passwords in plain text."
+            },
+            "2": {
+                "title": "2. How We Use Your Information",
+                "content": "Your information is used to provide breach detection services, improve our security tools, and communicate important updates. We analyze your queries against known breach databases to provide security insights."
+            },
+            "3": {
+                "title": "3. Data Storage",
+                "content": "Scan history is stored locally in your browser using LocalStorage. User accounts are stored securely in our database with encrypted passwords. We do not share your data with third parties."
+            },
+            "4": {
+                "title": "4. Security",
+                "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We recommend using strong, unique passwords for your account."
+            },
+            "5": {
+                "title": "5. Your Rights",
+                "content": "You have the right to access, update, or delete your personal information at any time. Contact us at devanshgeria18@gmail.com for any privacy-related requests."
+            },
+            "6": {
+                "title": "6. Changes to This Policy",
+                "content": "We may update this privacy policy from time to time. We will notify users of any significant changes by posting the new policy on this page."
+            }
+        },
+        "lastUpdated": "Dernière mise à jour :"
+    },
+    "terms": {
+        "title": "Conditions d'utilisation",
+        "sections": {
+            "1": {
+                "title": "1. Acceptance of Terms",
+                "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+            },
+            "2": {
+                "title": "2. Service Description",
+                "content": "BreachDetector provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
+            },
+            "3": {
+                "title": "3. User Responsibilities",
+                "content": "You agree to use our services only for lawful purposes. You must not use our tools to scan or analyze data you do not have permission to access. You are responsible for maintaining the confidentiality of your account credentials."
+            },
+            "4": {
+                "title": "4. Limitations of Liability",
+                "content": "While we strive for accuracy, BreachDetector does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
+            },
+            "5": {
+                "title": "5. Intellectual Property",
+                "content": "All content, features, and functionality of BreachDetector are owned by us and are protected by copyright, trademark, and other intellectual property laws."
+            },
+            "6": {
+                "title": "6. Termination",
+                "content": "We reserve the right to terminate or suspend your account and access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service."
+            },
+            "7": {
+                "title": "7. Changes to Terms",
+                "content": "We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms."
+            },
+            "8": {
+                "title": "8. Contact",
+                "content": "For questions about these Terms of Service, please contact us at devanshgeria18@gmail.com."
+            }
+        },
+        "lastUpdated": "Dernière mise à jour :"
+    },
+    "footer": {
+        "brand": "BreachDetector",
+        "tagline": "Protégez votre identité numérique avec des outils avancés de détection de violations.",
+        "tools": "Outils",
+        "legal": "Légal",
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions d'utilisation",
+        "contact": "Contactez-nous",
+        "rights": "Tous droits réservés."
+    },
+    "notFound": {
+        "title": "Page non trouvée",
+        "desc": "Oups ! La page que vous cherchez n'existe pas.",
+        "home": "Accueil",
+        "backHome": "Retour à l'accueil"
+    },
+    "error": {
+        "title": "Quelque chose s'est mal passé",
+        "desc": "Nous avons rencontré une erreur inattendue.",
+        "reload": "Recharger la page",
+        "home": "Aller à l'accueil"
     },
     "common": {
         "loading": "Chargement...",
         "copy": "Copier",
-        "copied": "Copié!",
-        "paste": "Coller"
+        "copied": "Copié !",
+        "paste": "Coller",
+        "demo": "Démo",
+        "or": "ou",
+        "and": "et"
     }
 }

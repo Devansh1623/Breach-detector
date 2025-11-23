@@ -6,7 +6,10 @@
         "url": "URL",
         "ip": "IP",
         "owasp": "OWASP",
-        "history": "Historial"
+        "history": "Historial",
+        "login": "Iniciar Sesión",
+        "signup": "Registrarse",
+        "logout": "Cerrar Sesión"
     },
     "hero": {
         "title": "Protege Tu Identidad Digital",
@@ -86,7 +89,10 @@
         "breachedIn": "Este correo electrónico se encontró en las siguientes violaciones:",
         "error": "Error",
         "errorDesc": "No se pudo verificar el correo electrónico. Por favor, inténtalo de nuevo.",
-        "exportPDF": "Exportar Informe PDF"
+        "exportPDF": "Exportar Informe PDF",
+        "invalid": "Por favor ingresa un correo electrónico válido.",
+        "networkError": "Error de red. Por favor inténtalo de nuevo.",
+        "tip": "Consejo: Ingresa tu correo para verificar contra violaciones de datos conocidas."
     },
     "passwordChecker": {
         "title": "Verificador y Generador de Contraseñas",
@@ -106,22 +112,20 @@
             "weak": "Contraseña débil: Considera aumentar la longitud y agregar símbolos y números.",
             "strong": "Contraseña fuerte—buen trabajo. Aún así usa contraseñas únicas por sitio."
         },
-        "breached": "Advertencia: Comprometida",
-        "breachedDesc": "Esta contraseña se ha visto {{count}} veces en violaciones de datos. ¡NO la uses!",
-        "safe": "No Encontrada en Violaciones",
-        "safeDesc": "Esta contraseña no se ha encontrado en violaciones conocidas, pero la fortaleza también importa."
+        "breachedTitle": "🚨 Contraseña Comprometida",
+        "breachedDesc": "Esta contraseña se ha visto {{count}} veces en violaciones de datos.",
+        "notFoundTitle": "✅ Contraseña No Encontrada",
+        "notFoundDesc": "Esta contraseña no aparece en violaciones públicas.",
+        "exportPDF": "📄 Exportar PDF",
+        "networkError": "Error de red"
     },
     "urlChecker": {
         "title": "Verificador de Seguridad de URL",
         "placeholder": "https://ejemplo.com",
         "button": "Verificar URL",
         "checking": "Verificando...",
-        "safe": "Seguro",
-        "safeDesc": "Esta URL parece ser segura.",
-        "unsafe": "Inseguro",
-        "unsafeDesc": "Esta URL ha sido marcada como potencialmente peligrosa.",
-        "unknown": "Desconocido",
-        "unknownDesc": "No se puede determinar la seguridad. Procede con precaución."
+        "verdict": "Veredicto",
+        "exportPDF": "📄 Exportar PDF"
     },
     "ipScanner": {
         "title": "Escáner de Dirección IP y Privacidad",
@@ -136,7 +140,8 @@
         "postal": "Código Postal",
         "org": "Organización",
         "error": "No se pudo recuperar la información de IP. Por favor, inténtalo más tarde.",
-        "loading": "Detectando tu IP..."
+        "loading": "Escaneando tu conexión...",
+        "coordinates": "Coordenadas"
     },
     "owaspScanner": {
         "title": "Escáner de Seguridad OWASP",
@@ -149,9 +154,116 @@
         "findings": "Hallazgos Detallados",
         "noIssues": "No Se Encontraron Problemas",
         "noIssuesDesc": "¡Buen trabajo! Tus encabezados de seguridad y configuración se ven sólidos.",
-        "exportJSON": "Exportar JSON",
-        "printPDF": "Imprimir / PDF",
-        "severity": "Severidad"
+        "exportJSON": "📥 Exportar JSON",
+        "printPDF": "🖨️ Imprimir / PDF",
+        "severity": "Severidad",
+        "severityLabel": "Severidad {{level}}"
+    },
+    "auth": {
+        "loginTitle": "Iniciar Sesión",
+        "signupTitle": "Crear Cuenta",
+        "emailLabel": "Correo",
+        "passwordLabel": "Contraseña",
+        "confirmPasswordLabel": "Confirmar Contraseña",
+        "loginButton": "Entrar",
+        "signupButton": "Registrarse",
+        "noAccount": "¿No tienes cuenta?",
+        "hasAccount": "¿Ya tienes cuenta?",
+        "loginLink": "Inicia sesión",
+        "signupLink": "Regístrate",
+        "error": {
+            "required": "Correo y contraseña son obligatorios",
+            "allRequired": "Todos los campos son obligatorios",
+            "passwordMismatch": "Las contraseñas no coinciden",
+            "loginFailed": "Error al iniciar sesión",
+            "signupFailed": "Error al registrarse",
+            "exists": "La cuenta ya existe. Por favor inicia sesión."
+        },
+        "success": {
+            "created": "¡Cuenta creada exitosamente!"
+        }
+    },
+    "history": {
+        "title": "📜 Historial de Escaneos",
+        "clear": "🗑️ Borrar Todo",
+        "empty": "No hay historial aún.",
+        "emptyDesc": "Tus escaneos recientes aparecerán aquí.",
+        "checkSuffix": "Verificación",
+        "status": {
+            "breached": "⚠️ Comprometido",
+            "safe": "✅ Seguro",
+            "error": "❌ Error"
+        },
+        "sources": "fuentes",
+        "occurrences": "ocurrencias"
+    },
+    "privacy": {
+        "title": "Política de Privacidad",
+        "sections": {
+            "1": {
+                "title": "1. Información que Recopilamos",
+                "content": "Recopilamos información que nos proporcionas directamente, incluyendo direcciones de correo electrónico para la creación de cuentas y consultas de escaneo (correos, contraseñas, URLs) para análisis de seguridad. No almacenamos contraseñas en texto plano."
+            },
+            "2": {
+                "title": "2. Cómo Usamos Tu Información",
+                "content": "Tu información se utiliza para proporcionar servicios de detección de violaciones, mejorar nuestras herramientas de seguridad y comunicar actualizaciones importantes. Analizamos tus consultas contra bases de datos de violaciones conocidas para proporcionar información de seguridad."
+            },
+            "3": {
+                "title": "3. Almacenamiento de Datos",
+                "content": "El historial de escaneo se almacena localmente en tu navegador usando LocalStorage. Las cuentas de usuario se almacenan de forma segura en nuestra base de datos con contraseñas encriptadas. No compartimos tus datos con terceros."
+            },
+            "4": {
+                "title": "4. Seguridad",
+                "content": "Implementamos medidas de seguridad estándar de la industria para proteger tus datos. Sin embargo, ningún método de transmisión por internet es 100% seguro. Recomendamos usar contraseñas fuertes y únicas para tu cuenta."
+            },
+            "5": {
+                "title": "5. Tus Derechos",
+                "content": "Tienes derecho a acceder, actualizar o eliminar tu información personal en cualquier momento. Contáctanos en devanshgeria18@gmail.com para cualquier solicitud relacionada con la privacidad."
+            },
+            "6": {
+                "title": "6. Cambios a Esta Política",
+                "content": "Podemos actualizar esta política de privacidad de vez en cuando. Notificaremos a los usuarios de cualquier cambio significativo publicando la nueva política en esta página."
+            }
+        },
+        "lastUpdated": "Última actualización:"
+    },
+    "terms": {
+        "title": "Términos de Servicio",
+        "sections": {
+            "1": {
+                "title": "1. Aceptación de Términos",
+                "content": "Al acceder y usar BreachDetector, aceptas y acuerdas estar obligado por estos Términos de Servicio. Si no estás de acuerdo con estos términos, por favor no uses nuestros servicios."
+            },
+            "2": {
+                "title": "2. Descripción del Servicio",
+                "content": "BreachDetector proporciona herramientas de seguridad que incluyen verificación de violaciones de correo, análisis de fortaleza de contraseñas, escaneo de seguridad de URL y análisis de privacidad de IP. Nuestros servicios se proporcionan \"tal cual\" con fines informativos."
+            },
+            "3": {
+                "title": "3. Responsabilidades del Usuario",
+                "content": "Aceptas usar nuestros servicios solo para fines legales. No debes usar nuestras herramientas para escanear o analizar datos a los que no tienes permiso de acceso. Eres responsable de mantener la confidencialidad de las credenciales de tu cuenta."
+            },
+            "4": {
+                "title": "4. Limitaciones de Responsabilidad",
+                "content": "Aunque nos esforzamos por la precisión, BreachDetector no garantiza que todas las violaciones sean detectadas o que nuestro análisis sea 100% preciso. No somos responsables de ningún daño resultante del uso o la incapacidad de usar nuestros servicios."
+            },
+            "5": {
+                "title": "5. Propiedad Intelectual",
+                "content": "Todo el contenido, características y funcionalidad de BreachDetector son propiedad nuestra y están protegidos por derechos de autor, marcas registradas y otras leyes de propiedad intelectual."
+            },
+            "6": {
+                "title": "6. Terminación",
+                "content": "Nos reservamos el derecho de terminar o suspender tu cuenta y acceso a nuestros servicios a nuestra sola discreción, sin previo aviso, por conducta que creemos viola estos Términos de Servicio."
+            },
+            "7": {
+                "title": "7. Cambios a los Términos",
+                "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado de nuestros servicios después de los cambios constituye la aceptación de los términos modificados."
+            },
+            "8": {
+                "title": "8. Contacto",
+                "content": "Para preguntas sobre estos Términos de Servicio, por favor contáctanos en devanshgeria18@gmail.com."
+            }
+        },
+        "lastUpdated": "Última actualización:"
     },
     "footer": {
         "brand": "BreachDetector",

@@ -1,10 +1,12 @@
 import React from "react";
 import { loadHistory, clearHistory } from "../utils/history";
+import { useTranslation } from "react-i18next";
 
 export default function HistoryModal({ open, onClose }) {
   if (!open) return null;
 
   const history = loadHistory();
+  const { t } = useTranslation();
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center animate-fadeIn p-4">
@@ -12,7 +14,7 @@ export default function HistoryModal({ open, onClose }) {
 
         {/* Header */}
         <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
-          <h2 className="text-2xl font-bold text-white text-glow">📜 Scan History</h2>
+          <h2 className="text-2xl font-bold text-white text-glow">{t('history.title')}</h2>
 
           <button
             onClick={onClose}
@@ -32,7 +34,7 @@ export default function HistoryModal({ open, onClose }) {
               }}
               className="px-3 py-1.5 bg-red-500/20 border border-red-500/30 rounded text-red-300 hover:bg-red-500/30 hover:text-white transition text-sm flex items-center gap-2"
             >
-              <span>🗑️</span> Clear All History
+              <span>🗑️</span> {t('history.clear')}
             </button>
           </div>
         )}
@@ -40,8 +42,8 @@ export default function HistoryModal({ open, onClose }) {
         {/* Empty State */}
         {history.length === 0 && (
           <div className="text-center text-gray-400 py-12">
-            <p className="text-lg">No history yet.</p>
-            <p className="text-sm mt-2 opacity-60">Your recent scans will appear here.</p>
+            <p className="text-lg">{t('history.empty')}</p>
+            <p className="text-sm mt-2 opacity-60">{t('history.emptyDesc')}</p>
           </div>
         )}
 
@@ -55,7 +57,7 @@ export default function HistoryModal({ open, onClose }) {
               <div className="flex justify-between items-start mb-2">
                 <div className="font-bold text-purple-300 capitalize flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></span>
-                  {item.type} Check
+                  {item.type} {t('history.checkSuffix')}
                 </div>
 
                 <div className="text-xs text-gray-400 font-mono">
@@ -70,24 +72,24 @@ export default function HistoryModal({ open, onClose }) {
               {/* result */}
               {!item.result?.error && item.result?.breached && (
                 <div className="text-red-400 text-sm font-semibold flex items-center gap-2">
-                  <span>⚠️</span> Breached
+                  {t('history.status.breached')}
                   {item.result.data?.length
-                    ? ` (${item.result.data.length} sources)`
+                    ? ` (${item.result.data.length} ${t('history.sources')})`
                     : item.result.count
-                      ? ` (${item.result.count.toLocaleString()} occurrences)`
+                      ? ` (${item.result.count.toLocaleString()} ${t('history.occurrences')})`
                       : ""}
                 </div>
               )}
 
               {!item.result?.error && !item.result?.breached && (
                 <div className="text-green-400 text-sm font-semibold flex items-center gap-2">
-                  <span>✅</span> Safe
+                  {t('history.status.safe')}
                 </div>
               )}
 
               {item.result?.error && (
                 <div className="text-red-400 text-sm font-semibold flex items-center gap-2">
-                  <span>❌</span> Error
+                  {t('history.status.error')}
                 </div>
               )}
             </div>

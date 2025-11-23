@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { post } from "../utils/api";
 import { useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "../styles/auth.css";
 
 export default function Signup() {
@@ -9,38 +10,39 @@ export default function Signup() {
   const [confirm, setConfirm] = useState("");
   const [err, setErr] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setErr("");
 
     if (!email || !password || !confirm)
-      return setErr("All fields are required");
+      return setErr(t('auth.error.allRequired'));
 
     if (password !== confirm)
-      return setErr("Passwords do not match");
+      return setErr(t('auth.error.passwordMismatch'));
 
     try {
       await post("/auth/signup", { email, password, confirmPassword: confirm });
-      alert("Account created successfully!");
+      alert(t('auth.success.created'));
       navigate("/login");
     } catch (error) {
       if (error.status === 409) {
-        return setErr("Account already exists. Please log in.");
+        return setErr(t('auth.error.exists'));
       }
-      setErr(error.message || "Signup failed");
+      setErr(error.message || t('auth.error.signupFailed'));
     }
   };
 
   return (
     <div className="login-root">
       <div className="formbg">
-        <h2>Create Account</h2>
+        <h2>{t('auth.signupTitle')}</h2>
 
         {err && <p className="error-message">{err}</p>}
 
         <form onSubmit={handleSignup}>
-          <label>Email</label>
+          <label>{t('auth.emailLabel')}</label>
           <input
             type="email"
             placeholder="your@email.com"
@@ -50,7 +52,7 @@ export default function Signup() {
 
           <br />
 
-          <label>Password</label>
+          <label>{t('auth.passwordLabel')}</label>
           <input
             type="password"
             placeholder="min. 6 characters"
@@ -60,7 +62,7 @@ export default function Signup() {
 
           <br />
 
-          <label>Confirm Password</label>
+          <label>{t('auth.confirmPasswordLabel')}</label>
           <input
             type="password"
             value={confirm}
@@ -69,11 +71,11 @@ export default function Signup() {
 
           <br />
 
-          <input type="submit" value="Sign up" />
+          <input type="submit" value={t('auth.signupButton')} />
         </form>
 
         <div className="footer-link">
-          Already have an account? <Link to="/login">Log in</Link>
+          {t('auth.hasAccount')} <Link to="/login">{t('auth.loginLink')}</Link>
         </div>
       </div>
     </div>

@@ -6,39 +6,294 @@
         "url": "URL",
         "ip": "IP",
         "owasp": "OWASP",
-        "history": "履歴"
+        "history": "履歴",
+        "login": "ログイン",
+        "signup": "登録",
+        "logout": "ログアウト"
     },
     "hero": {
-        "title": "デジタルアイデンティティを保護",
-        "subtitle": "データ侵害が増加しています。メール、パスワード、URLが侵害されているかを即座に安全に確認してください。"
+        "title": "デジタルIDを保護する",
+        "subtitle": "データ侵害が増加しています。メール、パスワード、またはURLが侵害されているかどうかを、即座に安全に確認してください。"
+    },
+    "whySecurity": {
+        "title": "なぜ今、セキュリティがこれまで以上に重要なのか",
+        "billions": {
+            "title": "数十億の記録が流出",
+            "desc": "サイバー攻撃は指数関数的に増加しています。毎年、数十億の個人記録がダークウェブで公開されています。"
+        },
+        "financial": {
+            "title": "金銭的損失",
+            "desc": "個人情報の盗難は、重大な金銭的損失や信用スコアの低下につながる可能性があります。早期発見が鍵です。"
+        },
+        "proactive": {
+            "title": "予防的な保護",
+            "desc": "侵害が発生するのを待たないでください。定期的に資格情報を確認することで、ハッカーの一歩先を行くことができます。"
+        }
+    },
+    "dataSecurity": {
+        "title": "あなたのデータセキュリティは私たちにとって重要です",
+        "subtitle": "私たちは、セキュリティツールは透明性があり、プライバシーに重点を置くべきだと信じています。",
+        "useServices": "サービスを利用する",
+        "zeroStorage": {
+            "title": "ゼロデータストレージ",
+            "desc": "私たちはあなたのパスワード、メール、または機密データをサーバーに保存することはありません。"
+        },
+        "privacyFirst": {
+            "title": "プライバシー優先設計",
+            "desc": "パスワードチェックはk-Anonymityハッシュを使用します。"
+        },
+        "transparent": {
+            "title": "透明な運用",
+            "desc": "すべての侵害チェックは、公開されているデータベースを使用します。"
+        },
+        "howProtects": "各サービスがあなたのプライバシーをどのように保護するか"
     },
     "services": {
-        "title": "セキュリティツール",
+        "title": "私たちのセキュリティツール",
         "email": {
             "title": "メール侵害チェッカー",
+            "desc": "あなたのメールが既知のデータ侵害で侵害されているかどうかを確認します。",
             "button": "メールを確認"
         },
         "password": {
-            "title": "パスワード強度分析",
+            "title": "パスワード強度アナライザー",
+            "desc": "パスワードの強度をテストします。",
             "button": "パスワードを確認"
         },
         "url": {
-            "title": "URL安全スキャナー",
+            "title": "URL安全性スキャナー",
+            "desc": "ウェブサイトが安全かどうかを確認します。",
             "button": "URLをスキャン"
         },
         "ip": {
             "title": "IPプライバシースキャナー",
+            "desc": "あなたのIPが何を明らかにしているかを確認します。",
             "button": "IPをスキャン"
         },
         "owasp": {
             "title": "OWASP設定スキャナー",
+            "desc": "セキュリティの問題についてサイトをスキャンします。",
             "button": "ウェブサイトをスキャン"
         }
+    },
+    "emailChecker": {
+        "title": "メール侵害チェッカー",
+        "placeholder": "you@example.com",
+        "button": "メールを確認",
+        "checking": "確認中...",
+        "safe": "良いニュースです！",
+        "safeDesc": "このメールは既知のデータ侵害で見つかりませんでした。",
+        "safeAdvice": "良いニュース — 侵害は見つかりませんでした。強力でユニークなパスワードと2FAを検討してください。",
+        "breached": "警告！",
+        "breachedDesc": "このメールは {{count}} 件のデータ侵害で見つかりました。",
+        "breachedIn": "このメールは以下の侵害で見つかりました：",
+        "error": "エラー",
+        "errorDesc": "メールの確認に失敗しました。再試行してください。",
+        "exportPDF": "PDFレポートをエクスポート",
+        "invalid": "有効なメールアドレスを入力してください。",
+        "networkError": "ネットワークエラー。再試行してください。",
+        "tip": "ヒント：メールを入力して、既知のデータ侵害を確認してください。"
+    },
+    "passwordChecker": {
+        "title": "パスワードチェッカー＆ジェネレーター",
+        "placeholder": "パスワードを入力...",
+        "button": "パスワードを確認",
+        "checking": "確認中...",
+        "generate": "強力なパスワードを生成",
+        "strength": {
+            "veryWeak": "非常に弱い",
+            "weak": "弱い",
+            "medium": "普通",
+            "strong": "強い",
+            "veryStrong": "非常に強い"
+        },
+        "tips": {
+            "default": "ヒント：少なくとも12文字を使用し、大文字、数字、記号を混ぜてください。",
+            "weak": "弱いパスワード：長さを増やし、記号を追加することを検討してください。",
+            "strong": "強いパスワード — よくできました。"
+        },
+        "breachedTitle": "🚨 パスワードが侵害されました",
+        "breachedDesc": "このパスワードは侵害で {{count}} 回見られました。",
+        "notFoundTitle": "✅ パスワードが見つかりません",
+        "notFoundDesc": "このパスワードは公開侵害には表示されません。",
+        "exportPDF": "📄 PDFをエクスポート",
+        "networkError": "ネットワークエラー"
+    },
+    "urlChecker": {
+        "title": "URL安全性チェッカー",
+        "placeholder": "https://example.com",
+        "button": "URLを確認",
+        "checking": "確認中...",
+        "verdict": "判定",
+        "exportPDF": "📄 PDFをエクスポート"
+    },
+    "ipScanner": {
+        "title": "IPアドレス＆プライバシースキャナー",
+        "subtitle": "あなたの接続が世界にどのような情報を明らかにしているかを確認します。",
+        "yourIP": "あなたのパブリックIPアドレス",
+        "location": "場所",
+        "isp": "ISP",
+        "timezone": "タイムゾーン",
+        "city": "市",
+        "region": "地域",
+        "country": "国",
+        "postal": "郵便番号",
+        "org": "組織",
+        "error": "IP情報を取得できませんでした。",
+        "loading": "接続をスキャン中...",
+        "coordinates": "座標"
+    },
+    "owaspScanner": {
+        "title": "OWASPセキュリティスキャナー",
+        "subtitle": "セキュリティ設定ミスについてウェブサイトをスキャンします。",
+        "placeholder": "ウェブサイトのURLを入力（例：google.com）",
+        "button": "ウェブサイトをスキャン",
+        "scanning": "スキャン中...",
+        "score": "セキュリティスコア",
+        "grade": "セキュリティグレード",
+        "findings": "詳細な結果",
+        "noIssues": "問題は見つかりませんでした",
+        "noIssuesDesc": "よくできました！セキュリティヘッダーはしっかりしているようです。",
+        "exportJSON": "📥 JSONをエクスポート",
+        "printPDF": "🖨️ 印刷 / PDF",
+        "severity": "重大度",
+        "severityLabel": "{{level}} 重大度"
+    },
+    "auth": {
+        "loginTitle": "ログイン",
+        "signupTitle": "アカウント作成",
+        "emailLabel": "メール",
+        "passwordLabel": "パスワード",
+        "confirmPasswordLabel": "パスワード確認",
+        "loginButton": "ログイン",
+        "signupButton": "登録",
+        "noAccount": "アカウントをお持ちでないですか？",
+        "hasAccount": "すでにアカウントをお持ちですか？",
+        "loginLink": "ログイン",
+        "signupLink": "登録",
+        "error": {
+            "required": "メールとパスワードは必須です",
+            "allRequired": "すべてのフィールドは必須です",
+            "passwordMismatch": "パスワードが一致しません",
+            "loginFailed": "ログインに失敗しました",
+            "signupFailed": "登録に失敗しました",
+            "exists": "アカウントは既に存在します。ログインしてください。"
+        },
+        "success": {
+            "created": "アカウントが正常に作成されました！"
+        }
+    },
+    "history": {
+        "title": "📜 スキャン履歴",
+        "clear": "🗑️ すべてクリア",
+        "empty": "履歴はまだありません。",
+        "emptyDesc": "最近のスキャンはここに表示されます。",
+        "checkSuffix": "チェック",
+        "status": {
+            "breached": "⚠️ 侵害されました",
+            "safe": "✅ 安全",
+            "error": "❌ エラー"
+        },
+        "sources": "ソース",
+        "occurrences": "回発生"
+    },
+    "privacy": {
+        "title": "プライバシーポリシー",
+        "sections": {
+            "1": {
+                "title": "1. Information We Collect",
+                "content": "We collect information you provide directly to us, including email addresses for account creation and scan queries (emails, passwords, URLs) for security analysis. We do not store passwords in plain text."
+            },
+            "2": {
+                "title": "2. How We Use Your Information",
+                "content": "Your information is used to provide breach detection services, improve our security tools, and communicate important updates. We analyze your queries against known breach databases to provide security insights."
+            },
+            "3": {
+                "title": "3. Data Storage",
+                "content": "Scan history is stored locally in your browser using LocalStorage. User accounts are stored securely in our database with encrypted passwords. We do not share your data with third parties."
+            },
+            "4": {
+                "title": "4. Security",
+                "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We recommend using strong, unique passwords for your account."
+            },
+            "5": {
+                "title": "5. Your Rights",
+                "content": "You have the right to access, update, or delete your personal information at any time. Contact us at devanshgeria18@gmail.com for any privacy-related requests."
+            },
+            "6": {
+                "title": "6. Changes to This Policy",
+                "content": "We may update this privacy policy from time to time. We will notify users of any significant changes by posting the new policy on this page."
+            }
+        },
+        "lastUpdated": "最終更新："
+    },
+    "terms": {
+        "title": "利用規約",
+        "sections": {
+            "1": {
+                "title": "1. Acceptance of Terms",
+                "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+            },
+            "2": {
+                "title": "2. Service Description",
+                "content": "BreachDetector provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
+            },
+            "3": {
+                "title": "3. User Responsibilities",
+                "content": "You agree to use our services only for lawful purposes. You must not use our tools to scan or analyze data you do not have permission to access. You are responsible for maintaining the confidentiality of your account credentials."
+            },
+            "4": {
+                "title": "4. Limitations of Liability",
+                "content": "While we strive for accuracy, BreachDetector does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
+            },
+            "5": {
+                "title": "5. Intellectual Property",
+                "content": "All content, features, and functionality of BreachDetector are owned by us and are protected by copyright, trademark, and other intellectual property laws."
+            },
+            "6": {
+                "title": "6. Termination",
+                "content": "We reserve the right to terminate or suspend your account and access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service."
+            },
+            "7": {
+                "title": "7. Changes to Terms",
+                "content": "We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms."
+            },
+            "8": {
+                "title": "8. Contact",
+                "content": "For questions about these Terms of Service, please contact us at devanshgeria18@gmail.com."
+            }
+        },
+        "lastUpdated": "最終更新："
+    },
+    "footer": {
+        "brand": "BreachDetector",
+        "tagline": "高度な侵害検出ツールでデジタルIDを保護します。",
+        "tools": "ツール",
+        "legal": "法的",
+        "privacy": "プライバシー",
+        "terms": "規約",
+        "contact": "お問い合わせ",
+        "rights": "無断転載を禁じます。"
+    },
+    "notFound": {
+        "title": "ページが見つかりません",
+        "desc": "おっと！お探しのページは存在しません。",
+        "home": "ホーム",
+        "backHome": "ホームページに戻る"
+    },
+    "error": {
+        "title": "問題が発生しました",
+        "desc": "予期しないエラーが発生しました。",
+        "reload": "ページを再読み込み",
+        "home": "ホームへ"
     },
     "common": {
         "loading": "読み込み中...",
         "copy": "コピー",
-        "copied": "コピーしました!",
-        "paste": "貼り付け"
+        "copied": "コピーしました！",
+        "paste": "貼り付け",
+        "demo": "デモ",
+        "or": "または",
+        "and": "および"
     }
 }

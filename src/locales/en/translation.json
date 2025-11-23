@@ -6,7 +6,10 @@
         "url": "URL",
         "ip": "IP",
         "owasp": "OWASP",
-        "history": "History"
+        "history": "History",
+        "login": "Log In",
+        "signup": "Sign Up",
+        "logout": "Log Out"
     },
     "hero": {
         "title": "Protect Your Digital Identity",
@@ -86,7 +89,10 @@
         "breachedIn": "This email was found in the following breaches:",
         "error": "Error",
         "errorDesc": "Failed to check email. Please try again.",
-        "exportPDF": "Export PDF Report"
+        "exportPDF": "Export PDF Report",
+        "invalid": "Please enter a valid email address.",
+        "networkError": "Network error. Please try again.",
+        "tip": "Tip: Enter your email to check against known data breaches."
     },
     "passwordChecker": {
         "title": "Password Breach & Generator",
@@ -106,22 +112,20 @@
             "weak": "Weak password: Consider increasing length and adding symbols and numbers.",
             "strong": "Strong password—good job. Still use unique passwords per site."
         },
-        "breached": "Warning: Compromised",
-        "breachedDesc": "This password has been seen {{count}} times in data breaches. Do NOT use it!",
-        "safe": "Not Found in Breaches",
-        "safeDesc": "This password hasn't been found in known breaches, but strength matters too."
+        "breachedTitle": "🚨 Password Compromised",
+        "breachedDesc": "This password was seen {{count}} times in breaches.",
+        "notFoundTitle": "✅ Password Not Found",
+        "notFoundDesc": "This password does not appear in public breaches.",
+        "exportPDF": "📄 Export PDF",
+        "networkError": "Network error"
     },
     "urlChecker": {
         "title": "URL Safety Checker",
         "placeholder": "https://example.com",
         "button": "Check URL",
         "checking": "Checking...",
-        "safe": "Safe",
-        "safeDesc": "This URL appears to be safe.",
-        "unsafe": "Unsafe",
-        "unsafeDesc": "This URL has been flagged as potentially dangerous.",
-        "unknown": "Unknown",
-        "unknownDesc": "Unable to determine safety. Proceed with caution."
+        "verdict": "Verdict",
+        "exportPDF": "📄 Export PDF"
     },
     "ipScanner": {
         "title": "IP Address & Privacy Scanner",
@@ -136,7 +140,8 @@
         "postal": "Postal Code",
         "org": "Organization",
         "error": "Could not retrieve IP information. Please try again later.",
-        "loading": "Detecting your IP..."
+        "loading": "Scanning your connection...",
+        "coordinates": "Coordinates"
     },
     "owaspScanner": {
         "title": "OWASP Security Scanner",
@@ -148,10 +153,81 @@
         "grade": "Security Grade",
         "findings": "Detailed Findings",
         "noIssues": "No Issues Found",
-        "noIssuesDesc": "Great job! Your security headers and configuration look solid.",
-        "exportJSON": "Export JSON",
-        "printPDF": "Print / PDF",
-        "severity": "Severity"
+        "status": {
+            "breached": "⚠️ Breached",
+            "safe": "✅ Safe",
+            "error": "❌ Error"
+        },
+        "sources": "sources",
+        "occurrences": "occurrences"
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "sections": {
+            "1": {
+                "title": "1. Information We Collect",
+                "content": "We collect information you provide directly to us, including email addresses for account creation and scan queries (emails, passwords, URLs) for security analysis. We do not store passwords in plain text."
+            },
+            "2": {
+                "title": "2. How We Use Your Information",
+                "content": "Your information is used to provide breach detection services, improve our security tools, and communicate important updates. We analyze your queries against known breach databases to provide security insights."
+            },
+            "3": {
+                "title": "3. Data Storage",
+                "content": "Scan history is stored locally in your browser using LocalStorage. User accounts are stored securely in our database with encrypted passwords. We do not share your data with third parties."
+            },
+            "4": {
+                "title": "4. Security",
+                "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We recommend using strong, unique passwords for your account."
+            },
+            "5": {
+                "title": "5. Your Rights",
+                "content": "You have the right to access, update, or delete your personal information at any time. Contact us at devanshgeria18@gmail.com for any privacy-related requests."
+            },
+            "6": {
+                "title": "6. Changes to This Policy",
+                "content": "We may update this privacy policy from time to time. We will notify users of any significant changes by posting the new policy on this page."
+            }
+        },
+        "lastUpdated": "Last updated:"
+    },
+    "terms": {
+        "title": "Terms of Service",
+        "sections": {
+            "1": {
+                "title": "1. Acceptance of Terms",
+                "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+            },
+            "2": {
+                "title": "2. Service Description",
+                "content": "BreachDetector provides security tools including email breach checking, password strength analysis, URL safety scanning, and IP privacy analysis. Our services are provided \"as is\" for informational purposes."
+            },
+            "3": {
+                "title": "3. User Responsibilities",
+                "content": "You agree to use our services only for lawful purposes. You must not use our tools to scan or analyze data you do not have permission to access. You are responsible for maintaining the confidentiality of your account credentials."
+            },
+            "4": {
+                "title": "4. Limitations of Liability",
+                "content": "While we strive for accuracy, BreachDetector does not guarantee that all breaches will be detected or that our analysis is 100% accurate. We are not liable for any damages resulting from the use or inability to use our services."
+            },
+            "5": {
+                "title": "5. Intellectual Property",
+                "content": "All content, features, and functionality of BreachDetector are owned by us and are protected by copyright, trademark, and other intellectual property laws."
+            },
+            "6": {
+                "title": "6. Termination",
+                "content": "We reserve the right to terminate or suspend your account and access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service."
+            },
+            "7": {
+                "title": "7. Changes to Terms",
+                "content": "We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms."
+            },
+            "8": {
+                "title": "8. Contact",
+                "content": "For questions about these Terms of Service, please contact us at devanshgeria18@gmail.com."
+            }
+        },
+        "lastUpdated": "Last updated:"
     },
     "footer": {
         "brand": "BreachDetector",

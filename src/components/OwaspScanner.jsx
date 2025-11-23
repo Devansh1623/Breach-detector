@@ -131,7 +131,7 @@ export default function OwaspScanner() {
                             {/* Findings */}
                             <div>
                                 <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-2xl font-bold">Detailed Findings</h3>
+                                    <h3 className="text-2xl font-bold">{t('owaspScanner.findings')}</h3>
                                     <div className="flex gap-3">
                                         <button
                                             onClick={() => {
@@ -144,13 +144,13 @@ export default function OwaspScanner() {
                                             }}
                                             className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded text-sm transition-colors"
                                         >
-                                            📥 Export JSON
+                                            {t('owaspScanner.exportJSON')}
                                         </button>
                                         <button
                                             onClick={() => window.print()}
                                             className="px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded text-sm transition-colors"
                                         >
-                                            🖨️ Print / PDF
+                                            {t('owaspScanner.printPDF')}
                                         </button>
                                     </div>
                                 </div>
@@ -159,8 +159,8 @@ export default function OwaspScanner() {
                                     <div className="p-6 bg-green-500/10 border border-green-500/30 rounded-xl flex items-center gap-4">
                                         <div className="text-3xl">✅</div>
                                         <div>
-                                            <h4 className="text-xl font-semibold text-green-400">No Issues Found</h4>
-                                            <p className="text-gray-300">Great job! Your security headers and configuration look solid.</p>
+                                            <h4 className="text-xl font-semibold text-green-400">{t('owaspScanner.noIssues')}</h4>
+                                            <p className="text-gray-300">{t('owaspScanner.noIssuesDesc')}</p>
                                         </div>
                                     </div>
                                 ) : (
@@ -206,7 +206,7 @@ function FindingItem({ item }) {
                             item.severity === "medium" ? "bg-orange-500/20 text-orange-300" :
                                 "bg-yellow-500/20 text-yellow-300"
                         }`}>
-                        {item.severity} Severity
+                        {t('owaspScanner.severityLabel', { level: item.severity })}
                     </span>
 
                     {expanded && item.recommendation && (
