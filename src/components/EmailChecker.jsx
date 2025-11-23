@@ -65,75 +65,75 @@ export default function EmailChecker() {
           <ul className="list-disc ml-5 mt-2 text-gray-100">
             {result.data && result.data.map((b, i) => <li key={i}>{b}</li>)}
           </ul>
-          </ul>
+
           <div className="mt-6 p-4 bg-blue-500/20 border border-blue-500/30 rounded-lg">
             <p className="text-blue-200 mb-2">
               ⚠️ <strong>Action Recommended:</strong> If this is your Gmail account, we strongly suggest resetting your password immediately.
             </p>
-            <a 
-              href="https://accounts.google.com/signin/v2/recoveryidentifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin" 
-              target="_blank" 
+            <a
+              href="https://accounts.google.com/signin/v2/recoveryidentifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded transition-colors text-sm font-semibold"
             >
               Reset Google Password →
             </a>
           </div>
-        </div >
+        </div>
       );
-}
-return <div className="mt-4 text-sm text-green-200">{t('emailChecker.safeAdvice')}</div>;
+    }
+    return <div className="mt-4 text-sm text-green-200">{t('emailChecker.safeAdvice')}</div>;
   };
 
-return (
-  <div className="min-h-screen text-white page-fade font-sans">
-    <Navbar />
-    <div className="max-w-2xl mx-auto pt-32 p-6">
-      <h1 className="text-4xl font-bold mb-6 text-center text-white">{t('emailChecker.title')}</h1>
-      <div className="glass-panel p-8">
-        <div className="flex gap-4 items-center">
-          <input
-            className="glass-input flex-1"
-            placeholder={t('emailChecker.placeholder')}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-label="email-input"
-          />
-          <button
-            onClick={copyEmail}
-            className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10"
-          >
-            {copied ? t('common.copied') : "📋"}
-          </button>
-          <button
-            onClick={() => setEmail("demo-breach@example.com")}
-            className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10 text-sm font-medium"
-            title={t('common.demo')}
-          >
-            {t('common.demo')}
-          </button>
-        </div>
-        <div className="mt-6 flex gap-4">
-          <button
-            onClick={checkEmail}
-            className="glass-button px-8 py-3 w-full md:w-auto"
-          >
-            {loading ? t('emailChecker.checking') : t('emailChecker.button')}
-          </button>
-          {result && !result.error && result.breached && (
+  return (
+    <div className="min-h-screen text-white page-fade font-sans">
+      <Navbar />
+      <div className="max-w-2xl mx-auto pt-32 p-6">
+        <h1 className="text-4xl font-bold mb-6 text-center text-white">{t('emailChecker.title')}</h1>
+        <div className="glass-panel p-8">
+          <div className="flex gap-4 items-center">
+            <input
+              className="glass-input flex-1"
+              placeholder={t('emailChecker.placeholder')}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-label="email-input"
+            />
             <button
-              onClick={() => exportBreachReportPDF({ type: "email", query: email, result })}
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10 text-white"
+              onClick={copyEmail}
+              className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10"
             >
-              {t('emailChecker.exportPDF')}
+              {copied ? t('common.copied') : "📋"}
             </button>
-          )}
+            <button
+              onClick={() => setEmail("demo-breach@example.com")}
+              className="px-4 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10 text-sm font-medium"
+              title={t('common.demo')}
+            >
+              {t('common.demo')}
+            </button>
+          </div>
+          <div className="mt-6 flex gap-4">
+            <button
+              onClick={checkEmail}
+              className="glass-button px-8 py-3 w-full md:w-auto"
+            >
+              {loading ? t('emailChecker.checking') : t('emailChecker.button')}
+            </button>
+            {result && !result.error && result.breached && (
+              <button
+                onClick={() => exportBreachReportPDF({ type: "email", query: email, result })}
+                className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-lg transition border border-white/10 text-white"
+              >
+                {t('emailChecker.exportPDF')}
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="mt-8">
-        {renderContent()}
+        <div className="mt-8">
+          {renderContent()}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

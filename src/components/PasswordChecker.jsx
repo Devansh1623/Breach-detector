@@ -133,6 +133,6 @@ export default function PasswordChecker() {
         )}
       </div>
     </div>
-    </div >
+
   );
 }
