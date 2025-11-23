@@ -181,6 +181,7 @@ export default function OwaspScanner() {
 
 function FindingItem({ item }) {
     const [expanded, setExpanded] = useState(false);
+    const { t } = useTranslation();
 
     return (
         <div
