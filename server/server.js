@@ -69,7 +69,7 @@ app.use("/", securityRoutes);
 app.use(express.static(path.join(__dirname, "../dist")));
 
 // Handle React routing, return all requests to React app
-app.get("*", (req, res, next) => {
+app.get("(.*)", (req, res, next) => {
   // If request is for API, skip to next middleware (which might be 404)
   // But since we put this AFTER API routes, it should be fine.
   // However, we need to be careful not to catch API 404s here if we want them to return JSON.
