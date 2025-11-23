@@ -137,46 +137,6 @@
         "city": "City",
         "region": "Region",
         "country": "Country",
-        "postal": "Postal Code",
-        "org": "Organization",
-        "error": "Could not retrieve IP information. Please try again later.",
-        "loading": "Scanning your connection...",
-        "coordinates": "Coordinates"
-    },
-    "owaspScanner": {
-        "title": "OWASP Security Scanner",
-        "subtitle": "Scan websites for security misconfigurations and vulnerabilities.",
-        "placeholder": "Enter website URL (e.g., google.com)",
-    },
-    "2": {
-        "title": "2. How We Use Your Information",
-        "content": "Your information is used to provide breach detection services, improve our security tools, and communicate important updates. We analyze your queries against known breach databases to provide security insights."
-    },
-    "3": {
-        "title": "3. Data Storage",
-        "content": "Scan history is stored locally in your browser using LocalStorage. User accounts are stored securely in our database with encrypted passwords. We do not share your data with third parties."
-    },
-    "4": {
-        "title": "4. Security",
-        "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We recommend using strong, unique passwords for your account."
-    },
-    "5": {
-        "title": "5. Your Rights",
-        "content": "You have the right to access, update, or delete your personal information at any time. Contact us at devanshgeria18@gmail.com for any privacy-related requests."
-    },
-    "6": {
-        "title": "6. Changes to This Policy",
-        "content": "We may update this privacy policy from time to time. We will notify users of any significant changes by posting the new policy on this page."
-    }
-},
-"lastUpdated": "Last updated:"
-},
-"terms": {
-"title": "Terms of Service",
-"sections": {
-    "1": {
-        "title": "1. Acceptance of Terms",
-        "content": "By accessing and using BreachDetector, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
     },
     "2": {
         "title": "2. Service Description",
