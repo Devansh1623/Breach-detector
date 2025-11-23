@@ -84,30 +84,15 @@ import securityRoutes from "./routes/securityChecks.js";
 app.use("/", securityRoutes);
 
 // -------------------------------
-// SERVE STATIC ASSETS (Production)
+// API ROUTES (Move ABOVE static assets)
 // -------------------------------
-import fs from "fs";
-const distPath = path.join(__dirname, "../dist");
 
-if (fs.existsSync(distPath)) {
-  // Serve static files from the 'dist' directory
-  app.use(express.static(distPath));
+// Health Check
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", env: process.env.NODE_ENV });
+});
 
-  // Handle React routing, return all requests to React app
-  app.get(/.*/, (req, res, next) => {
-    // If request is for API, skip to next middleware
-    if (req.path.startsWith("/auth") || req.path.startsWith("/check-") || req.path.startsWith("/api")) {
-      return next();
-    }
-    res.sendFile(path.join(distPath, "index.html"));
-  });
-} else {
-  console.log("DIST folder not found. Skipping static file serving (API Only Mode).");
-}
-
-// -------------------------------
 // Email Breach Checker (BreachDirectory)
-// -------------------------------
 app.post("/check-email-bd", async (req, res) => {
   const { email } = req.body;
 
@@ -144,9 +129,7 @@ app.post("/check-email-bd", async (req, res) => {
   }
 });
 
-// -------------------------------
 // Password Checker (HIBP)
-// -------------------------------
 app.post("/check-password", async (req, res) => {
   const { password } = req.body;
 
@@ -174,6 +157,28 @@ app.post("/check-password", async (req, res) => {
     return res.json({ error: "HIBP Error", details: err.message });
   }
 });
+
+// -------------------------------
+// SERVE STATIC ASSETS (Production)
+// -------------------------------
+import fs from "fs";
+const distPath = path.join(__dirname, "../dist");
+
+if (fs.existsSync(distPath)) {
+  // Serve static files from the 'dist' directory
+  app.use(express.static(distPath));
+
+  // Handle React routing, return all requests to React app
+  app.get(/.*/, (req, res, next) => {
+    // If request is for API, skip to next middleware
+    if (req.path.startsWith("/auth") || req.path.startsWith("/check-") || req.path.startsWith("/api")) {
+      return next();
+    }
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+} else {
+  console.log("DIST folder not found. Skipping static file serving (API Only Mode).");
+}
 
 // -------------------------------
 // Start Server
