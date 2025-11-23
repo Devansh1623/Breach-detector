@@ -15,26 +15,47 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // -------------------------------
-// FORCE dotenv to load ONLY backend .env
+// FORCE dotenv to load ONLY in development
 // -------------------------------
-process.env.DOTENV_KEY = "disable_auto_inject";
-
-dotenv.config({
-  path: path.resolve(__dirname, "../.env"), // backend env only
-  override: true,
-  debug: false
-});
-
-console.log("Loaded Backend ENV →", path.resolve(__dirname, "../.env"));
+if (process.env.NODE_ENV !== "production") {
+  process.env.DOTENV_KEY = "disable_auto_inject";
+  dotenv.config({
+    path: path.resolve(__dirname, "../.env"),
+    override: true,
+    debug: false
+  });
+  console.log("Loaded Backend ENV (Dev)");
+}
 
 // -------------------------------
 // Express App
 // -------------------------------
 const app = express();
+
+// CORS Configuration (Production Ready)
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"], // Allow frontend
+  origin: (origin, cb) => {
+    // allow same-origin or no-origin (non-browser)
+    if (!origin) return cb(null, true);
+
+    const allowed = [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      process.env.FRONTEND_URL // Optional: Set in Render if needed
+    ].filter(Boolean);
+
+    // Allow allowed origins OR any Render deployment
+    if (allowed.includes(origin) || (process.env.NODE_ENV === "production" && origin.endsWith(".onrender.com"))) {
+      return cb(null, true);
+    }
+
+    // Fallback for testing (remove in strict production if needed)
+    // return cb(null, true); 
+    return cb(new Error("CORS blocked by server"), false);
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -65,20 +86,24 @@ app.use("/", securityRoutes);
 // -------------------------------
 // SERVE STATIC ASSETS (Production)
 // -------------------------------
-// Serve static files from the 'dist' directory
-app.use(express.static(path.join(__dirname, "../dist")));
+import fs from "fs";
+const distPath = path.join(__dirname, "../dist");
 
-// Handle React routing, return all requests to React app
-app.get(/.*/, (req, res, next) => {
-  // If request is for API, skip to next middleware (which might be 404)
-  // But since we put this AFTER API routes, it should be fine.
-  // However, we need to be careful not to catch API 404s here if we want them to return JSON.
-  // A better approach is to check if it's an API request.
-  if (req.path.startsWith("/auth") || req.path.startsWith("/check-") || req.path.startsWith("/api")) {
-    return next();
-  }
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
-});
+if (fs.existsSync(distPath)) {
+  // Serve static files from the 'dist' directory
+  app.use(express.static(distPath));
+
+  // Handle React routing, return all requests to React app
+  app.get(/.*/, (req, res, next) => {
+    // If request is for API, skip to next middleware
+    if (req.path.startsWith("/auth") || req.path.startsWith("/check-") || req.path.startsWith("/api")) {
+      return next();
+    }
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+} else {
+  console.log("DIST folder not found. Skipping static file serving (API Only Mode).");
+}
 
 // -------------------------------
 // Email Breach Checker (BreachDirectory)
