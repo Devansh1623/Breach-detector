@@ -31,11 +31,12 @@ body {
 /* Main Glass Panel */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: 16px;
+  transform: translateZ(0);
 }
 
 /* Glass Input Fields */
@@ -78,8 +79,8 @@ body {
 
 /* Navbar Glass */
 .glass-nav {
-  background: rgba(15, 12, 41, 0.7);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 12, 41, 0.85);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 

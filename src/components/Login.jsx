@@ -44,8 +44,9 @@ export default function Login() {
     let animationFrameId;
 
     // Configuration
-    const particleCount = 70;
+    const particleCount = 40; // Reduced from 70
     const connectionDistance = 140;
+    const connectionDistanceSq = connectionDistance * connectionDistance; // Pre-calculate squared distance
     const moveSpeed = 0.25;
 
     const resize = () => {
@@ -97,9 +98,10 @@ export default function Login() {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < connectionDistance) {
+          if (distSq < connectionDistanceSq) {
+            const dist = Math.sqrt(distSq); // Only calc sqrt if needed for opacity
             const opacity = 1 - (dist / connectionDistance);
             // Gradient line between particles
             const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);

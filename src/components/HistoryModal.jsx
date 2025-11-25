@@ -1,4 +1,5 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { loadHistory, clearHistory } from "../utils/history";
 import { useTranslation } from "react-i18next";
 
@@ -8,8 +9,8 @@ export default function HistoryModal({ open, onClose }) {
   const history = loadHistory();
   const { t } = useTranslation();
 
-  return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center animate-fadeIn p-4">
+  return createPortal(
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[9999] flex items-center justify-center animate-fadeIn p-4">
       <div className="glass-panel w-full max-w-xl p-6 shadow-2xl animate-slideUp relative">
 
         {/* Header */}
@@ -96,6 +97,7 @@ export default function HistoryModal({ open, onClose }) {
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

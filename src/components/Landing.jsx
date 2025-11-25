@@ -34,13 +34,7 @@ export default function Landing() {
       </div>
 
       {/* Why Security Matters Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="glass-panel py-20"
-      >
+      <div className="glass-panel py-20">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">{t('whySecurity.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -67,7 +61,7 @@ export default function Landing() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Your Data Security Section */}
       <motion.div
@@ -103,59 +97,35 @@ export default function Landing() {
 
         {/* Security Guarantees */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="text-5xl mb-4">🔒</div>
             <h3 className="text-xl font-bold mb-3 text-purple-200">Zero Data Storage</h3>
             <p className="text-gray-100 leading-relaxed">
               We never store your passwords, emails, or sensitive data on our servers. All checks are performed in real-time and discarded immediately.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="text-5xl mb-4">🔐</div>
             <h3 className="text-xl font-bold mb-3 text-blue-200">Privacy-First Design</h3>
             <p className="text-gray-100 leading-relaxed">
               Password checks use k-Anonymity hashing. Your actual password never leaves your browser in plain text—only a partial hash is sent.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="text-5xl mb-4">✅</div>
             <h3 className="text-xl font-bold mb-3 text-cyan-200">Transparent Operations</h3>
             <p className="text-gray-100 leading-relaxed">
               All breach checks use publicly available databases and APIs. No hidden tracking, no data mining, no third-party analytics.
             </p>
-          </motion.div>
+          </div>
         </div>
 
         {/* How Each Service Protects Privacy */}
         <h3 className="text-2xl md:text-3xl font-bold text-center mb-12 text-white">How Each Service Protects Your Privacy</h3>
         <div className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="flex items-start gap-4">
               <div className="text-3xl">📧</div>
               <div>
@@ -165,15 +135,9 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="flex items-start gap-4">
               <div className="text-3xl">🔑</div>
               <div>
@@ -183,15 +147,9 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="flex items-start gap-4">
               <div className="text-3xl">🔗</div>
               <div>
@@ -201,15 +159,9 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="flex items-start gap-4">
               <div className="text-3xl">🌐</div>
               <div>
@@ -219,15 +171,9 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="glass-panel glass-card-hover p-6"
-          >
+          <div className="glass-panel glass-card-hover p-6">
             <div className="flex items-start gap-4">
               <div className="text-3xl">🛡️</div>
               <div>
@@ -237,7 +183,7 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Trust Indicators */}
@@ -274,13 +220,7 @@ export default function Landing() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">Our Security Tools</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Email Checker */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="glass-panel glass-card-hover p-8 text-center"
-          >
+          <div className="glass-panel glass-card-hover p-8 text-center">
             <div>
               <div className="text-4xl mb-6">📧</div>
               <h3 className="text-2xl font-bold mb-4 text-white">Email Breach Checker</h3>
@@ -294,16 +234,10 @@ export default function Landing() {
             >
               Check Email
             </Link>
-          </motion.div>
+          </div>
 
           {/* Password Checker */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-panel glass-card-hover p-8 text-center"
-          >
+          <div className="glass-panel glass-card-hover p-8 text-center">
             <div>
               <div className="text-4xl mb-6">🔑</div>
               <h3 className="text-2xl font-bold mb-4 text-white">Password Leak Scanner</h3>
@@ -317,16 +251,10 @@ export default function Landing() {
             >
               Check Password
             </Link>
-          </motion.div>
+          </div>
 
           {/* URL Checker */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-panel glass-card-hover p-8 text-center"
-          >
+          <div className="glass-panel glass-card-hover p-8 text-center">
             <div>
               <div className="text-4xl mb-6">🔗</div>
               <h3 className="text-2xl font-bold mb-4 text-white">URL Phishing Scanner</h3>
@@ -340,16 +268,10 @@ export default function Landing() {
             >
               Scan URL
             </Link>
-          </motion.div>
+          </div>
 
           {/* IP Scanner */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="glass-panel glass-card-hover p-8 text-center"
-          >
+          <div className="glass-panel glass-card-hover p-8 text-center">
             <div>
               <div className="text-4xl mb-6">🌐</div>
               <h3 className="text-2xl font-bold mb-4 text-white">IP Privacy Scanner</h3>
@@ -363,16 +285,10 @@ export default function Landing() {
             >
               Scan IP
             </Link>
-          </motion.div>
+          </div>
 
           {/* OWASP Scanner */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="glass-panel glass-card-hover p-8 text-center md:col-span-2 lg:col-span-4"
-          >
+          <div className="glass-panel glass-card-hover p-8 text-center md:col-span-2 lg:col-span-4">
             <div>
               <div className="text-4xl mb-6">🛡️</div>
               <h3 className="text-2xl font-bold mb-4 text-white">OWASP Config Scanner</h3>
@@ -386,7 +302,7 @@ export default function Landing() {
             >
               Scan Website
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
