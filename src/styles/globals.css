@@ -24,8 +24,24 @@ body {
   overflow-x: hidden;
 }
 
+/* Glass Input Fields (Reverted to White) */
+.glass-input {
+  @apply w-full px-4 py-3 rounded-lg outline-none transition-all duration-300;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #1f2937;
+  /* gray-800 */
+}
+
+.glass-input:focus {
+  background: #ffffff;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.3);
+}
+
 .glass-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: #9ca3af;
+  /* gray-400 */
 }
 
 /* Glass Buttons */
@@ -52,6 +68,17 @@ body {
   background: rgba(15, 12, 41, 0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+  will-change: transform;
 }
 
 /* Text Effects */
