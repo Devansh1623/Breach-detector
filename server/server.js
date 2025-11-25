@@ -68,7 +68,21 @@ app.use(express.json());
 // -------------------------------
 
 // Set security HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "https://ipwho.is"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https:"],
+        upgradeInsecureRequests: [],
+      },
+    },
+  })
+);
 
 // Limit requests from same API
 const limiter = rateLimit({
