@@ -215,7 +215,7 @@ export default function Landing() {
               <div>
                 <h4 className="text-xl font-bold mb-2 text-white">IP Privacy Scanner</h4>
                 <p className="text-gray-100 leading-relaxed">
-                  Makes read-only API calls to ipapi.co to show what information websites can see about your connection. No tracking, no logging, no data retention.
+                  Makes read-only API calls to ipwho.is to show what information websites can see about your connection. No tracking, no logging, no data retention.
                 </p>
               </div>
             </div>

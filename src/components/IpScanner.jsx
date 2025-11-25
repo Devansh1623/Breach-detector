@@ -12,12 +12,26 @@ export default function IpScanner() {
     useEffect(() => {
         const fetchIpData = async () => {
             try {
-                const response = await fetch("https://ipapi.co/json/");
+                const response = await fetch("https://ipwho.is/");
                 if (!response.ok) {
                     throw new Error(t('ipScanner.error'));
                 }
                 const data = await response.json();
-                setIpData(data);
+
+                if (!data.success) {
+                    throw new Error(data.message || t('ipScanner.error'));
+                }
+
+                setIpData({
+                    ip: data.ip,
+                    city: data.city,
+                    region: data.region,
+                    country_name: data.country,
+                    org: data.connection.org || data.connection.isp,
+                    timezone: data.timezone.id,
+                    latitude: data.latitude,
+                    longitude: data.longitude
+                });
             } catch (err) {
                 setError(t('ipScanner.error'));
             } finally {
