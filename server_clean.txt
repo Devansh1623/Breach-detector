@@ -1,0 +1,13 @@
+
+> breach-detector-react@1.0.0 server
+> node server/server.js
+
+[dotenv@17.2.3][WARN] You set DOTENV_KEY but you are missing a .env.vault file at null. Did you forget to build it?
+[dotenv@17.2.3] injecting env (14) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Loaded Backend ENV (Dev)
+Backend running on port 3000
+Email configured: true
+MongoDB connected
+[2025-11-25T19:38:54.418Z] GET /health
+Terminate batch job (Y/N)? 
+^CThe syntax of the command is incorrect.

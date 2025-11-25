@@ -1,0 +1,22 @@
+
+> breach-detector-react@1.0.0 server
+> node server/server.js
+
+[dotenv@17.2.3][WARN] You set DOTENV_KEY but you are missing a .env.vault file at null. Did you forget to build it?
+[dotenv@17.2.3] injecting env (14) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Loaded Backend ENV (Dev)
+Backend running on port 3000
+Email configured: true
+MongoDB connected
+TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at C:\Breach-detector\node_modules\xss-clean\lib\index.js:8:30
+    at Layer.handleRequest (C:\Breach-detector\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Breach-detector\node_modules\router\index.js:342:13)
+    at C:\Breach-detector\node_modules\router\index.js:297:9
+    at processParams (C:\Breach-detector\node_modules\router\index.js:582:12)
+    at next (C:\Breach-detector\node_modules\router\index.js:291:5)
+    at file:///C:/Breach-detector/node_modules/express-rate-limit/dist/index.mjs:913:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///C:/Breach-detector/node_modules/express-rate-limit/dist/index.mjs:796:5
+Terminate batch job (Y/N)? 
+^CThe syntax of the command is incorrect.
