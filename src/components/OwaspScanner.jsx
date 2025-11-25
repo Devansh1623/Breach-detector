@@ -48,7 +48,7 @@ export default function OwaspScanner() {
     };
 
     return (
-        <div className="min-h-screen text-white page-fade font-sans">
+        <div className="min-h-screen text-white font-sans">
             <Navbar />
             <div className="max-w-4xl mx-auto pt-32 p-6">
                 <motion.div

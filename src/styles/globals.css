@@ -24,36 +24,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ============================================
-   UTILITIES
-   ============================================ */
-
-/* Main Glass Panel */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  border-radius: 16px;
-  transform: translateZ(0);
-}
-
-/* Glass Input Fields */
-.glass-input {
-  @apply w-full px-4 py-3 rounded-lg outline-none transition-all duration-300;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  backdrop-filter: blur(4px);
-}
-
-.glass-input:focus {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 10px rgba(0, 234, 255, 0.3);
-}
-
 .glass-input::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }

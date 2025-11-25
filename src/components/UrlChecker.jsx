@@ -32,7 +32,7 @@ export default function UrlChecker() {
   }
 
   return (
-    <div className="min-h-screen text-white page-fade font-sans">
+    <div className="min-h-screen text-white font-sans">
       <Navbar />
       <div className="max-w-2xl mx-auto pt-32 p-6">
         <h1 className="text-4xl font-bold mb-6 text-center text-white">{t('urlChecker.title')}</h1>
